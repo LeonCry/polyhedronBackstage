@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.leon.mapper.UserMapper">
+<!--    插入一条数据-->
+    <insert id="insertUser">
+        INSERT INTO polyhedron.UserInfo
+        (userQQ, userEmail, userName, userSign, userHead, userBack, userMoney, isOnline)
+        VALUES(#{userQQ},#{userQQ},#{userName},#{userSign},#{userHead},#{userBack},#{userMoney},#{isOnline};
+    </insert>
+<!--    查询所有数据-->
+    <select id="selectAllUsers" resultType="com.leon.pojo.User">
+        select * from polyhedron.UserInfo where userId = 1;
+    </select>
+</mapper>
