@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 public class User {
     private int userId;
     private String userQQ;
+    private String userPassword;
     private String userEmail;
     private String userName;
     private String userSign;
     private String userHead;
     private String userBack;
     private int userMoney;
-    private Boolean isOnline;
+    private int isOnline;
 }

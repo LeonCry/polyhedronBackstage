@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>验证码</title>
+
+    <style>
+        body{
+            background-color: black;
+            padding: 0;
+            margin: 0;
+
+        }
+        .box{
+            position: relative;
+            background-color: rgba(0,0,0,0.66);
+            width: 100%;
+            margin: 0;
+            padding: 25px;
+            height: 500px;
+        }
+        .titles{
+            font-size: 2.5vh;
+            color: pink;
+            font-weight: bolder;
+        }
+        .hrs{
+            position: relative;
+            height: 1.33vh;
+            background-color: pink;
+            width: 100%;
+            border: none;
+            box-shadow: 0 0 15px pink;
+            border-radius: 25px;
+            background-size: 400%;
+            overflow: hidden;
+        }
+        .content{
+            position: relative;
+            padding: 30px;
+            font-size: 1.8vh;
+            color: pink;
+            font-weight: bold;
+        }
+        .variableContent{
+            position: relative;
+            width: 75%;
+            left: 20%;
+        }
+        .code{
+            position: relative;
+            padding: 30px;
+            font-size: 1.8vh;
+            line-height: 50px;
+            color: salmon;
+            font-weight: normal;
+        }
+        .botom{
+            position: relative;
+            float: right;
+            right: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="box">
+    <br><br>
+    <span class="titles">P O L Y H E D R O N . C O M</span>
+    <hr class="hrs">
+    <br>
+    <span class="content">恭喜您,注册成功!以下是您的用户信息:</span>
+    <br><br><br>
+    <div class="variableContent">
+    <span class="code">登录用户名:</span>
+    <span class="code" th:text="${userName}"></span>
+    <br>
+    <span class="code">用户密码:</span>
+    <span class="code" th:text="${userPassword}"></span>
+    <br>
+    <span class="code">用户邮箱:</span>
+    <span class="code" th:text="${userEmail}"></span>
+    <br>
+    <span class="code" >登录用户名注册后不可更改,用户昵称默认为登录用户名,其他设置请登录 www.polyhedron.com 进行设置.</span>
+    </div>
+    <br><br><br>
+    <div class="botom">
+        <span class="content">查看更多内容请移步</span><a class="content" href="www.POLYHEDRON.COM" >www.polyhedron.com</a>
+    </div>
+    <br><br>
+</div>
+
+
+</body>
+</html>
+
+

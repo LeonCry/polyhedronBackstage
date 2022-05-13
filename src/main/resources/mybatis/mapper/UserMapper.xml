@@ -5,13 +5,14 @@
 
 <mapper namespace="com.leon.mapper.UserMapper">
 <!--    插入一条数据-->
-    <insert id="insertUser">
+    <insert id="insertUser" parameterType="com.leon.pojo.User">
         INSERT INTO polyhedron.UserInfo
-        (userQQ, userEmail, userName, userSign, userHead, userBack, userMoney, isOnline)
-        VALUES(#{userQQ},#{userQQ},#{userName},#{userSign},#{userHead},#{userBack},#{userMoney},#{isOnline};
+        (userQQ,userPassword,userEmail,userName,userSign,userHead,userBack,userMoney,isOnline)
+        VALUES(#{userQQ},#{userPassword},#{userEmail},#{userQQ},"-","-","-",0,0);
     </insert>
-<!--    查询所有数据-->
-    <select id="selectAllUsers" resultType="com.leon.pojo.User">
-        select * from polyhedron.UserInfo where userId = 1;
+
+<!--    查询单条数据 by userName-->
+    <select id="selectUserByUserQQ" resultType="com.leon.pojo.User">
+        select * from polyhedron.UserInfo where userQQ = #{userQQ};
     </select>
 </mapper>

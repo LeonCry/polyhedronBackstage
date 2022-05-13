@@ -9,7 +9,6 @@ spring:
     url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-
     #Spring Boot 默认是不注入这些属性值的，需要自己绑定
     #druid 数据源专有配置
     initialSize: 5
@@ -31,3 +30,16 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    # 发送邮件配置
+  mail:
+    host: smtp.qq.com # 配置 smtp 服务器地址
+    port: 587 # smtp 服务器的端口
+    username: 1686201564@qq.com # 配置邮箱用户名(你的邮箱地址)
+    password: huwgubonkkupfaca # 配置申请到的授权码(刚让复制的授权码)
+    default-encoding: UTF-8 # 配置邮件编码
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory # 配饰 SSL 加密工厂
+        debug: true
+    from: 1686201564@qq.com # 发送方邮件，陪在yml中可方便更改
