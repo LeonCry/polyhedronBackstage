@@ -8,9 +8,16 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface UserMapper {
-//    向数据库UserInfo中插入一条数据==注册
-    int insertUser(User user);
-//    根据用户名查询单条数据
+
+
+    //    根据用户名查询单条用户信息数据
     User selectUserByUserQQ(@Param("userQQ") String userQQ);
+
+    //    插入一条用户信息数据
+    int insertUser(User user);
+
+    //    修改一条用户信息数据
+    int updateUser(User user);
+
 
 }

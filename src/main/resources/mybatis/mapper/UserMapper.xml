@@ -15,4 +15,12 @@
     <select id="selectUserByUserQQ" resultType="com.leon.pojo.User">
         select * from polyhedron.UserInfo where userQQ = #{userQQ};
     </select>
+
+<!--    更新一条数据-->
+    <update id="updateUser" parameterType="com.leon.pojo.User">
+        update polyhedron.UserInfo
+        SET userPassword=#{userPassword},userEmail=#{userEmail},userName=#{userName},userSign=#{userSign},
+            userHead=#{userHead},userBack=#{userBack}
+        WHERE userQQ = #{userQQ};
+    </update>
 </mapper>

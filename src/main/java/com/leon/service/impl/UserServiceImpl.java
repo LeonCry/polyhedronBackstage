@@ -87,4 +87,10 @@ public class UserServiceImpl implements UserService {
             return 1;
         }
     }
+
+//    更新用户信息
+    @Override
+    public int updateUserInfo(User user) {
+       return userMapper.updateUser(user);
+    }
 }

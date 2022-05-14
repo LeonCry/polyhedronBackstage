@@ -18,7 +18,7 @@ public interface UserService {
     public int userLogin(String userQQ,String userPassword);
 
     /**
-     *
+     *根据用户名查询该用户所有信息
      * @param userQQ 用户登录名
      * @return 返回一个用户所有信息
      */
@@ -49,7 +49,12 @@ public interface UserService {
      */
     public int userForgetPassword(String userName) throws MessagingException, UnsupportedEncodingException;
 
-
+    /**
+     *  更新用户的信息
+     * @param user:用户传入的信息
+     * @return -1:更新失败
+     */
+    public int updateUserInfo(User user);
 
 
 }

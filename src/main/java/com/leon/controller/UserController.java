@@ -3,7 +3,10 @@ package com.leon.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.leon.pojo.User;
+import com.leon.pojo.UserSetting;
+import com.leon.service.UserSettingService;
 import com.leon.service.impl.UserServiceImpl;
+import com.leon.service.impl.UserSettingServiceImpl;
 import com.leon.utils.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +21,9 @@ import java.io.UnsupportedEncodingException;
 public class UserController {
     @Autowired
     UserServiceImpl userService;
+    @Autowired
+    UserSettingServiceImpl userSettingService;
+
     @Autowired
     EmailUtil emailUtil;
 
@@ -56,7 +62,19 @@ public class UserController {
     public int userRegister(@RequestBody User receiverUser) throws MessagingException, UnsupportedEncodingException {
         System.out.println("===正在执行 用户注册 功能...");
 //        先进行用户查找,若查找到该用户,则不可注册,用户名已被注册
-        return userService.userRegister(receiverUser);
+        int state = userService.userRegister(receiverUser);
+        if (state==-1){
+            return -1;
+        }
+        else{
+//            如果注册没有失败,则同时将用户信息一块注册
+            return userSettingService.userSettingRegister(
+                    new UserSetting(receiverUser.getUserId(), receiverUser.getUserQQ(),1,1,1,1));
+
+
+        }
+
+
     }
 
 //    忘记密码
@@ -71,5 +89,9 @@ public class UserController {
         }
     }
 
-
+//    更新用户信息
+    @RequestMapping("updateUserInfo")
+    public int updateUserInfo(@RequestBody User receiverUser){
+        return userService.updateUserInfo(receiverUser);
+    }
 }
