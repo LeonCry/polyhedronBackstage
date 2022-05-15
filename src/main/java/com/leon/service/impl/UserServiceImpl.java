@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -92,5 +93,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateUserInfo(User user) {
        return userMapper.updateUser(user);
+    }
+
+//    根据用户名或昵称返回用户信息list
+    @Override
+    public List<User> selectUsersByUserQQOrName(String userQQ) {
+        return userMapper.selectUsersByUserQQOrUserName(userQQ);
     }
 }

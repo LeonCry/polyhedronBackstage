@@ -1,21 +1,21 @@
 package com.leon.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.leon.pojo.User;
 import com.leon.pojo.UserSetting;
-import com.leon.service.UserSettingService;
 import com.leon.service.impl.UserServiceImpl;
 import com.leon.service.impl.UserSettingServiceImpl;
 import com.leon.utils.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class UserController {
@@ -92,6 +92,77 @@ public class UserController {
 //    更新用户信息
     @RequestMapping("updateUserInfo")
     public int updateUserInfo(@RequestBody User receiverUser){
+        System.out.println("正在更新用户信息...");
         return userService.updateUserInfo(receiverUser);
     }
+
+//    上传头像
+    @RequestMapping("saveHead")
+    @ResponseBody
+    public String saveHead(@RequestParam MultipartFile file, HttpServletRequest request){
+        System.out.println("===正在执行 上传头像 功能...");
+//        创建上传文件目录
+        String uploadPath = "/Volumes/OS存储/Personalwebsite/polyhedron/src/assets/Heads";
+//        获取原文件名
+        String OriginalFilename = file.getOriginalFilename();
+        System.out.println(OriginalFilename);
+//        获取文件后缀名
+        String suffixName = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));//获取文件后缀名
+//        重新生成名字
+        String filename = UUID.randomUUID().toString() +suffixName;
+        File localFile = new File(uploadPath+"/"+filename);
+        try {
+            file.transferTo(localFile); //把上传的文件保存至本地
+            /*
+             * 这里应该把filename保存到数据库,供前端访问时使用
+             */
+            return filename;//上传成功，返回保存的文件地址
+        }catch (IOException e){
+            e.printStackTrace();
+            System.out.println("上传失败");
+            return "-1";
+        }
+
+    }
+
+
+
+//    上传背景
+    @RequestMapping("saveBack")
+    @ResponseBody
+    public String saveBack(@RequestParam MultipartFile file, HttpServletRequest request){
+    System.out.println("===正在执行 上传背景 功能...");
+//        创建上传文件目录
+    String uploadPath = "/Volumes/OS存储/Personalwebsite/polyhedron/src/assets/Backs";
+//        获取原文件名
+    String OriginalFilename = file.getOriginalFilename();
+    System.out.println(OriginalFilename);
+//        获取文件后缀名
+    String suffixName = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));//获取文件后缀名
+//        重新生成名字
+    String filename = UUID.randomUUID().toString() +suffixName;
+    File localFile = new File(uploadPath+"/"+filename);
+    try {
+        file.transferTo(localFile); //把上传的文件保存至本地
+        /*
+         * 这里应该把filename保存到数据库,供前端访问时使用
+         */
+        return filename;//上传成功，返回保存的文件地址
+    }catch (IOException e){
+        e.printStackTrace();
+        System.out.println("上传失败");
+        return "-1";
+    }
+
+}
+
+//    根据用户名或用户昵称查找若干用户
+    @RequestMapping("findUsers")
+    public String selectUsersByUserQQOrUserName(@RequestBody User user){
+        System.out.println("===正在执行功能: 根据用户名或用户昵称查找若干用户");
+        List<User> users = userService.selectUsersByUserQQOrName(user.getUserQQ());
+        return JSON.toJSONString(users);
+    }
+
+
 }

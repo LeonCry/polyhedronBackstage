@@ -3,6 +3,7 @@ import com.leon.pojo.User;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 
 //服务层
@@ -56,5 +57,11 @@ public interface UserService {
      */
     public int updateUserInfo(User user);
 
+    /**
+     * 根据用户名或昵称返回用户信息list
+     * @param userQQ:请求的用户名字
+     * @return :返回符合条件的所有user集合
+     */
+    public List<User> selectUsersByUserQQOrName(String userQQ);
 
 }

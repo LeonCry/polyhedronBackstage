@@ -8,7 +8,7 @@
     <insert id="insertUser" parameterType="com.leon.pojo.User">
         INSERT INTO polyhedron.UserInfo
         (userQQ,userPassword,userEmail,userName,userSign,userHead,userBack,userMoney,isOnline)
-        VALUES(#{userQQ},#{userPassword},#{userEmail},#{userQQ},"-","-","-",0,0);
+        VALUES(#{userQQ},#{userPassword},#{userEmail},#{userQQ},"---","defaultHead.jpg","defaultBack.jpg",0,0);
     </insert>
 
 <!--    查询单条数据 by userName-->
@@ -19,8 +19,24 @@
 <!--    更新一条数据-->
     <update id="updateUser" parameterType="com.leon.pojo.User">
         update polyhedron.UserInfo
-        SET userPassword=#{userPassword},userEmail=#{userEmail},userName=#{userName},userSign=#{userSign},
-            userHead=#{userHead},userBack=#{userBack}
-        WHERE userQQ = #{userQQ};
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userPassword!=null">userPassword=#{userPassword},</if>
+            <if test="userEmail!=null">userEmail=#{userEmail},</if>
+            <if test="userName!=null">userName=#{userName}, </if>
+            <if test="userSign!=null">userSign=#{userSign},</if>
+            <if test="userHead!=null">userHead=#{userHead},</if>
+            <if test="userBack!=null">userBack=#{userBack},</if>
+            <if test="userMoney!=null">userMoney=#{userMoney},</if>
+            <if test="isOnline!=null">isOnline=#{isOnline},</if>
+        </trim>
+        <where>
+            userQQ = #{userQQ};
+        </where>
     </update>
+
+<!--    根据用户名或昵称返回用户信息list-->
+    <select id="selectUsersByUserQQOrUserName" resultType="com.leon.pojo.User">
+        select * from polyhedron.UserInfo where userQQ=#{userQQ} or userName=#{userQQ};
+    </select>
+
 </mapper>

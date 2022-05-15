@@ -43,3 +43,8 @@ spring:
           socketFactoryClass: javax.net.ssl.SSLSocketFactory # 配饰 SSL 加密工厂
         debug: true
     from: 1686201564@qq.com # 发送方邮件，陪在yml中可方便更改
+#  配置上传最大文件限制
+  servlet:
+    multipart:
+      max-file-size: 6MB
+      max-request-size: 10MB

@@ -5,10 +5,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface UserMapper {
-
 
     //    根据用户名查询单条用户信息数据
     User selectUserByUserQQ(@Param("userQQ") String userQQ);
@@ -18,6 +19,9 @@ public interface UserMapper {
 
     //    修改一条用户信息数据
     int updateUser(User user);
+
+    //    根据用户名或昵称返回用户信息list
+    List<User> selectUsersByUserQQOrUserName(@Param("userQQ") String userQQ);
 
 
 }
