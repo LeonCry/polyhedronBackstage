@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserSettingServiceImpl implements UserSettingService {
 
     @Autowired
-    UserSettingMapper userSettingMapper;
+    private UserSettingMapper userSettingMapper;
 
 //      导入用户配置
     @Override

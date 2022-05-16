@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.leon.mapper.SysNoticeMapper">
+
+<!--    插入一条数据-->
+    <insert id="addOneNotice" parameterType="com.leon.pojo.SysNotice">
+        insert into polyhedron.SysNotice
+        (sendUserQQ,receiveUserQQ,noticeType,remarks,isAccept,isDelete,noticeTime)
+        values (#{sendUserQQ},#{receiveUserQQ},#{noticeType},#{remarks},0,0,#{noticeTime});
+    </insert>
+
+
+<!--    查询数据根据receiveUserQQ 且 未被用户删除-->
+    <select id="selectSysNoticeByReceiveUserQQ" resultType="com.leon.pojo.SysNotice">
+        select * from polyhedron.SysNotice where receiveUserQQ = #{receiveUserQQ} and isDelete = 0;
+    </select>
+
+    <!--    查询数据根据sendUserQQ 且 未被用户删除-->
+    <select id="selectSysNoticeBySendUserQQ" resultType="com.leon.pojo.SysNotice">
+        select * from polyhedron.SysNotice where sendUserQQ = #{sendUserQQ} and isDelete = 0;
+    </select>
+<!--    从数据库中选择一条 未被删除 且 已知发送方和接收方 且 接收状态为 0:未被查看的状态,且为添加好友状态-->
+    <select id="selectSysNoticeNoRepeat" resultType="com.leon.pojo.SysNotice">
+        select * from polyhedron.SysNotice where sendUserQQ = #{sendUserQQ} and receiveUserQQ = #{receiveUserQQ}
+        and isDelete = 0 and isAccept = 0 and noticeType = 1;
+    </select>
+
+<!--更新数据,动态sql-->
+    <update id="updateSysNoticeData" parameterType="com.leon.pojo.SysNotice">
+        update polyhedron.SysNotice
+        <trim prefix="set" suffixOverrides=",">
+            <if test="noticeType!=null">noticeType = #{noticeType}</if>
+            <if test="remarks!=null">remarks = #{remarks}</if>
+            <if test="isAccept!=null">isAccpet = #{isAccpet}</if>
+            <if test="isDelete!=null">isDelete = #{isDelete}</if>
+            <if test="noticeTime!=null">NoticeTime = #{noticeTime}</if>
+        <where>
+            receiveUserQQ = #{receiveUserQQ} and sendUserQQ = #{sendUserQQ};
+        </where>
+        </trim>
+    </update>
+
+</mapper>

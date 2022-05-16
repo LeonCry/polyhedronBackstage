@@ -34,9 +34,9 @@
         </where>
     </update>
 
-<!--    根据用户名或昵称返回用户信息list-->
+<!--    根据用户名或昵称返回用户信息list  模糊查找-->
     <select id="selectUsersByUserQQOrUserName" resultType="com.leon.pojo.User">
-        select * from polyhedron.UserInfo where userQQ=#{userQQ} or userName=#{userQQ};
+        select * from polyhedron.UserInfo where INSTR(userQQ,#{userQQ})>0  or INSTR(userName,#{userQQ})>0;
     </select>
 
 </mapper>
