@@ -9,20 +9,20 @@ public interface UserSettingService {
      * @param userSetting 导入用户设置
      * @return  -1:导入失败
      */
-    public int userSettingRegister(UserSetting userSetting);
+    int userSettingRegister(UserSetting userSetting);
 
     /**
      * 根据用户名查询该用户的设置信息
      * @param userQQ 用户名字
      * @return  返回整个userSetting信息
      */
-    public UserSetting selectAllUserSettingByUserQQ(String userQQ);
+    UserSetting selectAllUserSettingByUserQQ(String userQQ);
 
     /**
      * 更新用户信息根据传入的用户信息
      * @param userSetting 传入用户更新的信息
      * @return ,-1:更新失败
      */
-    public int updateUserSetting(UserSetting userSetting);
+    int updateUserSetting(UserSetting userSetting);
 
 }

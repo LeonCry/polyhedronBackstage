@@ -29,18 +29,19 @@
     </select>
 
 <!--更新数据,动态sql-->
+<!--            inter类型还要加上and noticeTime!=''空的判断-->
     <update id="updateSysNoticeData" parameterType="com.leon.pojo.SysNotice">
         update polyhedron.SysNotice
         <trim prefix="set" suffixOverrides=",">
-            <if test="noticeType!=null">noticeType = #{noticeType}</if>
-            <if test="remarks!=null">remarks = #{remarks}</if>
-            <if test="isAccept!=null">isAccpet = #{isAccpet}</if>
-            <if test="isDelete!=null">isDelete = #{isDelete}</if>
-            <if test="noticeTime!=null">NoticeTime = #{noticeTime}</if>
-        <where>
-            receiveUserQQ = #{receiveUserQQ} and sendUserQQ = #{sendUserQQ};
-        </where>
+            <if test="noticeType!=null and noticeType!=''">noticeType = #{noticeType},</if>
+            <if test="remarks!=null">remarks = #{remarks},</if>
+            <if test="isAccept!=null  and isAccept!=''">isAccept = #{isAccept},</if>
+            <if test="isDelete!=null">isDelete = #{isDelete},</if>
+            <if test="noticeTime!=null  and noticeTime!=''">noticeTime = #{noticeTime},</if>
         </trim>
+        <where>
+            receiveUserQQ = #{receiveUserQQ}  and sendUserQQ = #{sendUserQQ};
+        </where>
     </update>
 
 </mapper>

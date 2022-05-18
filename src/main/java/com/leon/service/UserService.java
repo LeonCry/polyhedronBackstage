@@ -16,14 +16,14 @@ public interface UserService {
      * @param userPassword 用户密码
      * @return 0:用户未注册;-1:密码错误;1:密码正确
      */
-    public int userLogin(String userQQ,String userPassword);
+    int userLogin(String userQQ,String userPassword);
 
     /**
      *根据用户名查询该用户所有信息
      * @param userQQ 用户登录名
      * @return 返回一个用户所有信息
      */
-    public User getUser(String userQQ);
+    User getUser(String userQQ);
 
 
     /**
@@ -33,14 +33,14 @@ public interface UserService {
      * @throws MessagingException 错误信息
      * @throws UnsupportedEncodingException 错误信息
      */
-    public int registerCode(String userEmail) throws MessagingException, UnsupportedEncodingException;
+    int registerCode(String userEmail) throws MessagingException, UnsupportedEncodingException;
 
     /**
      * 用户注册功能
      * @param user 注册用户
      * @return -1:用户已存在,注册未成功; 其他:注册成功
      */
-    public int userRegister(User user) throws MessagingException, UnsupportedEncodingException;
+    int userRegister(User user) throws MessagingException, UnsupportedEncodingException;
 
 
     /**
@@ -48,20 +48,20 @@ public interface UserService {
      * @param userName 用户忘记的用户名
      * @return -1:表示数据库内没有该用户;1:将发送邮件通知该用户
      */
-    public int userForgetPassword(String userName) throws MessagingException, UnsupportedEncodingException;
+    int userForgetPassword(String userName) throws MessagingException, UnsupportedEncodingException;
 
     /**
      *  更新用户的信息
      * @param user:用户传入的信息
      * @return -1:更新失败
      */
-    public int updateUserInfo(User user);
+    int updateUserInfo(User user);
 
     /**
      * 根据用户名或昵称返回用户信息list
      * @param userQQ:请求的用户名字
      * @return :返回符合条件的所有user集合
      */
-    public List<User> selectUsersByUserQQOrName(String userQQ);
+    List<User> selectUsersByUserQQOrName(String userQQ);
 
 }

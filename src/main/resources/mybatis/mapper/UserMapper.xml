@@ -11,7 +11,7 @@
         VALUES(#{userQQ},#{userPassword},#{userEmail},#{userQQ},"---","defaultHead.jpg","defaultBack.jpg",0,0);
     </insert>
 
-<!--    查询单条数据 by userName-->
+<!--    查询单条数据 by userQQ-->
     <select id="selectUserByUserQQ" resultType="com.leon.pojo.User">
         select * from polyhedron.UserInfo where userQQ = #{userQQ};
     </select>

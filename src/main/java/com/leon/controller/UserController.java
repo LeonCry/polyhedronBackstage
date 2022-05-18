@@ -39,7 +39,7 @@ public class UserController {
         return loginState;
     }
 
-//      登录成功后取得用户信息
+//      登录成功后取得用户信息,根据用户名
     @RequestMapping("getUser")
     public String getUser(@RequestBody User receiverUser){
 //        将得到的user对象反序列化返回给前端Json对象
@@ -156,7 +156,7 @@ public class UserController {
 
 }
 
-//    根据用户名或用户昵称查找若干用户
+//    根据用户名或用户昵称查找若干用户,搜索功能
     @RequestMapping("findUsers")
     public String selectUsersByUserQQOrUserName(@RequestBody User user){
         System.out.println("===正在执行功能: 根据用户名或用户昵称查找若干用户");

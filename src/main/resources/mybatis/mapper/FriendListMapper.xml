@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.leon.mapper.FriendListMapper">
+    <insert id="addOneFriend" parameterType="com.leon.pojo.FriendList">
+        insert into polyhedron.friendList
+        (userQQ,friendQQ,friendRemarkName,isShowRecent,beFriendTime)
+        values (#{userQQ},#{friendQQ},'',0,#{beFriendTime});
+    </insert>
+
+    <update id="updateOneFriend" parameterType="com.leon.pojo.FriendList">
+        update polyhedron.friendList
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userQQ!=null">userQQ = #{userQQ},</if>
+            <if test="friendQQ!=null">friendQQ = #{friendQQ},</if>
+            <if test="friendRemarkName!=null">friendRemarkName = #{friendRemarkName},</if>
+            <if test="isShowRecent!=null and isShowRecent!=''">isShowRecent = #{isShowRecent},</if>
+            <if test="beFriendTime!=null and beFriendTime!=''">beFriendTime = #{beFriendTime},</if>
+        </trim>
+            <where>
+                userQQ = #{userQQ} and friendQQ = #{friendQQ};
+            </where>
+    </update>
+
+
+    <resultMap id="selectFriendsByStep" type="com.leon.pojo.FriendList">
+        <id column="id" property="id"></id>
+        <result column="userQQ" property="userQQ"></result>
+        <result column="friendQQ" property="friendQQ"></result>
+        <result column="friendRemarkName" property="friendRemarkName"></result>
+        <result column="isShowRecent" property="isShowRecent"></result>
+        <result column="beFriendTime" property="beFriendTime"></result>
+        <association select="com.leon.mapper.UserMapper.selectUserByUserQQ" column="friendQQ" property="user"></association>
+    </resultMap>
+    <select id="selectFriends" resultMap="selectFriendsByStep">
+        select * from polyhedron.friendList where userQQ = #{userQQ} and friendQQ = #{friendQQ};
+    </select>
+
+
+    <resultMap id="selectAllFriendsByStep" type="com.leon.pojo.FriendList">
+        <id column="id" property="id"></id>
+        <result column="userQQ" property="userQQ"></result>
+        <result column="friendQQ" property="friendQQ"></result>
+        <result column="friendRemarkName" property="friendRemarkName"></result>
+        <result column="isShowRecent" property="isShowRecent"></result>
+        <result column="beFriendTime" property="beFriendTime"></result>
+        <association select="com.leon.mapper.UserMapper.selectUserByUserQQ" column="friendQQ" property="user"></association>
+    </resultMap>
+    <select id="selectAllFriends" resultMap="selectAllFriendsByStep">
+        select * from polyhedron.friendList where userQQ = #{userQQ};
+    </select>
+
+</mapper>

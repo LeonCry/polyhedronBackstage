@@ -2,6 +2,7 @@ package com.leon.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.leon.pojo.SysNotice;
+import com.leon.service.impl.FriendListServiceImpl;
 import com.leon.service.impl.SysNoticeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,8 @@ public class SysNoticeController {
     @Autowired
     SysNoticeServiceImpl sysNoticeService;
 
+    @Autowired
+    FriendListServiceImpl friendListService;
 //    添加一条通知数据
     @RequestMapping("addOneNotice")
     public int addOneNotice(@RequestBody SysNotice sysNotice){
@@ -23,6 +26,17 @@ public class SysNoticeController {
         if (sysNoticeService.selectSysNoticeNoRepeat(sysNotice.getReceiveUserQQ(), sysNotice.getSendUserQQ())!=null){
             System.out.println("已经发送过好友请求了");
             return -1;
+        }
+//        检测对方是不是已经发送过好友请求了
+        else if(sysNoticeService.selectSysNoticeNoRepeat(sysNotice.getSendUserQQ(), sysNotice.getReceiveUserQQ())!=null){
+            System.out.println("对方向你已经发送过好友请求了");
+            return -2;
+        }
+//        检测双方是不是已经是好友了
+        else if(friendListService.searchFriendList(sysNotice.getSendUserQQ(),sysNotice.getReceiveUserQQ()).size()!=0){
+
+            System.out.println("双方已经是好友了");
+            return -3;
         }
         else{
             return sysNoticeService.addOneNotice(sysNotice);
