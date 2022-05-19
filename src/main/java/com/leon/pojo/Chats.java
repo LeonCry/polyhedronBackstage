@@ -13,4 +13,6 @@ public class Chats {
     private String receiveUserQQ;
     private String chatContent;
     private long chatTime;
+    private int pageStart;
+    private int pageEnd;
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.ChatsMapper">
+
+    <insert id="addOneChat" parameterType="com.leon.pojo.Chats">
+        insert into polyhedron.Chats
+        (sendUserQQ,receiveUserQQ,chatContent,chatTime,pageStart,pageEnd)
+        values
+        (#{sendUserQQ},#{receiveUserQQ},#{chatContent},#{chatTime},0,0);
+    </insert>
+
+
+    <select id="selectOrderDesc" resultType="com.leon.pojo.Chats">
+        select * from polyhedron.Chats where sendUserQQ = #{sendUserQQ} and receiveUserQQ = #{receiveUserQQ}
+        or sendUserQQ = #{receiveUserQQ} and receiveUserQQ = #{sendUserQQ} order by chatId desc limit #{pageStart},#{pageEnd};
+    </select>
+
+
+</mapper>
