@@ -6,6 +6,7 @@ import cn.hutool.json.JSONUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -69,15 +70,17 @@ public class WebSocketServer {
         log.info("服务端收到用户username={}的消息:{}", username, message);
         JSONObject obj = JSONUtil.parseObj(message);
         String toUsername = obj.getStr("to"); // to表示发送给哪个用户，比如 admin
-        String text = obj.getStr("text"); // 发送的消息文本  hello
+//        String text = obj.getStr("text"); // 发送的消息文本  hello
         // {"to": "admin", "text": "聊天文本"}
+        System.out.println("=========收到的信息为:"+obj.getStr("message"));
         Session toSession = sessionMap.get(toUsername); // 根据 to用户名来获取 session，再通过session发送消息文本
         if (toSession != null) {
             // 服务器端 再把消息组装一下，组装后的消息包含发送人和发送的文本内容
             // {"from": "zhang", "text": "hello"}
             JSONObject jsonObject = new JSONObject();
-            jsonObject.set("from", username);  // from 是 zhang
-            jsonObject.set("text", text);  // text 同上面的text
+            jsonObject.set("from", obj.getStr("from"));  // from 是 zhang
+            jsonObject.set("text", obj.getStr("message"));  // text 同上面的text
+            jsonObject.set("to", obj.getStr("to"));  // from 是 zhang
             this.sendMessage(jsonObject.toString(), toSession);
             log.info("发送给用户username={}，消息：{}", toUsername, jsonObject.toString());
         } else {
