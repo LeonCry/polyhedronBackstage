@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.StarSpaceMapper">
+
+    <insert id="addOneSpace" parameterType="com.leon.pojo.StarSpace">
+        insert into polyhedron.StarSpace
+            (publishQQ,spaceContent,publishTime,collector,gooder,noGooder,sharer,pageStart,pageEnd)
+            values (#{publishQQ},#{spaceContent},#{publishTime},'','','','',0,0);
+    </insert>
+
+    <update id="updateSpace" parameterType="com.leon.pojo.StarSpace">
+        update polyhedron.StarSpace
+    <trim prefix="set" suffixOverrides=",">
+        <if test="publishQQ!=null">publishQQ = #{publishQQ},</if>
+        <if test="spaceContent!=null">spaceContent = #{spaceContent},</if>
+        <if test="publishTime!=null">publishTime = #{publishTime},</if>
+        <if test="collector!=null">collector = #{collector},</if>
+        <if test="gooder!=null">gooder = #{gooder},</if>
+        <if test="noGooder!=null">noGooder = #{noGooder},</if>
+        <if test="sharer!=null">sharer = #{sharer},</if>
+        <if test="pageStart!=null">pageStart = #{pageStart},</if>
+        <if test="pageEnd!=null">pageEnd = #{pageEnd},</if>
+    </trim>
+            <where>
+                publishQQ = #{publishQQ};
+            </where>
+    </update>
+
+    <resultMap id="selectStarSpaceWithUsers" type="com.leon.pojo.StarSpace">
+        <id column="id" property="id"></id>
+        <result column="publishQQ" property="publishQQ"></result>
+        <result column="spaceContent" property="spaceContent"></result>
+        <result column="publishTime" property="publishTime"></result>
+        <result column="collector" property="collector"></result>
+        <result column="gooder" property="gooder"></result>
+        <result column="noGooder" property="noGooder"></result>
+        <result column="sharer" property="sharer"></result>
+        <result column="pageStart" property="pageStart"></result>
+        <result column="pageEnd" property="pageEnd"></result>
+        <association property="user" select="com.leon.mapper.UserMapper.selectUserByUserQQ" column="publishQQ"></association>
+    </resultMap>
+
+    <select id="selectByPublisher" resultMap="selectStarSpaceWithUsers">
+        select * from polyhedron.StarSpace where publishQQ = #{publishQQ} order by publishId desc limit #{pageStart},#{pageEnd};
+    </select>
+</mapper>
