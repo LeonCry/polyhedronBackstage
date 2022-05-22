@@ -20,14 +20,14 @@
     <update id="updateUser" parameterType="com.leon.pojo.User">
         update polyhedron.UserInfo
         <trim prefix="set" suffixOverrides=",">
-            <if test="userPassword!=null">userPassword=#{userPassword},</if>
+            <if test="userPassword!=null and userPassword!=''">userPassword=#{userPassword},</if>
             <if test="userEmail!=null">userEmail=#{userEmail},</if>
-            <if test="userName!=null">userName=#{userName}, </if>
-            <if test="userSign!=null">userSign=#{userSign},</if>
+            <if test="userName!=null and userName!=''">userName=#{userName}, </if>
+            <if test="userSign!=null and userSign!=''">userSign=#{userSign},</if>
             <if test="userHead!=null">userHead=#{userHead},</if>
             <if test="userBack!=null">userBack=#{userBack},</if>
-            <if test="userMoney!=null">userMoney=#{userMoney},</if>
-            <if test="isOnline!=null">isOnline=#{isOnline},</if>
+            <if test="userMoney!=null and userMoney!=''">userMoney=#{userMoney},</if>
+            <if test="isOnline!=null and isOnline!=''">isOnline=#{isOnline},</if>
         </trim>
         <where>
             userQQ = #{userQQ};

@@ -29,4 +29,9 @@ public class StarSpaceServiceImpl implements StarSpaceService {
     public List<StarSpace> selectByPublisher(String publishQQ,int pageStart,int pageEnd) {
         return starSpaceMapper.selectByPublisher(publishQQ,pageStart,pageEnd);
     }
+
+    @Override
+    public List<StarSpace> selectByPublishId(int publishId, int pageStart, int pageEnd) {
+        return starSpaceMapper.selectByPublishId(publishId,pageStart,pageEnd);
+    }
 }

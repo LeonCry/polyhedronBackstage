@@ -30,10 +30,13 @@ public class StarSpaceController {
     //    查询一些动态根据publishUser--以及user
     @RequestMapping("selectSpaces")
     public String selectSpaces(@RequestBody StarSpace starSpace){
-        System.out.println(starSpaceService.selectByPublisher(starSpace.getPublishQQ(),starSpace.getPageStart(),starSpace.getPageEnd()).toString());
 //        SerializerFeature.DisableCircularReferenceDetect:解除循环引用:$refs.user(0)的问题
-        String json = JSON.toJSONString(starSpaceService.selectByPublisher(starSpace.getPublishQQ(),starSpace.getPageStart(),starSpace.getPageEnd()), SerializerFeature.DisableCircularReferenceDetect);
-        System.out.println(json);
-        return json;
+        return JSON.toJSONString(starSpaceService.selectByPublisher(starSpace.getPublishQQ(),starSpace.getPageStart(),starSpace.getPageEnd()), SerializerFeature.DisableCircularReferenceDetect);
+    }
+    //    查询一些动态根据publishUser--以及user
+    @RequestMapping("selectSpacesById")
+    public String selectSpacesById(@RequestBody StarSpace starSpace){
+//        SerializerFeature.DisableCircularReferenceDetect:解除循环引用:$refs.user(0)的问题
+        return JSON.toJSONString(starSpaceService.selectByPublishId(starSpace.getPublishId(),starSpace.getPageStart(),starSpace.getPageEnd()), SerializerFeature.DisableCircularReferenceDetect);
     }
 }

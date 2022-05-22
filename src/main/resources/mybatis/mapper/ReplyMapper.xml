@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.ReplyMapper">
+
+    <insert id="insertReply" parameterType="com.leon.mapper.ReplyMapper">
+        insert into polyhedron.Reply
+        (replySpaceId,replyQQ,replyContent,replyTargetQQ,isReplyComment,myFloor,replyTargetFloor,replyTime,pageStart,pageEnd)
+        values
+            (#{replySpaceId},#{replyQQ},#{replyContent},#{replyTargetQQ},#{isReplyComment},#{myFloor},#{replyTargetFloor},#{replyTime},0,0);
+    </insert>
+
+    <resultMap id="selectWithUsers" type="com.leon.pojo.Reply">
+        <id column="id" property="id"></id>
+        <result column="replySpaceId" property="replySpaceId"></result>
+        <result column="replyQQ" property="replyQQ"></result>
+        <result column="replyContent" property="replyContent"></result>
+        <result column="replyTargetQQ" property="replyTargetQQ"></result>
+        <result column="isReplyComment" property="isReplyComment"></result>
+        <result column="myFloor" property="myFloor"></result>
+        <result column="replyTime" property="replyTime"></result>
+        <result column="pageStart" property="pageStart"></result>
+        <result column="pageEnd" property="pageEnd"></result>
+        <association property="user" column="replyQQ" select="com.leon.mapper.UserMapper.selectUserByUserQQ"></association>
+        <association property="targetUser" column="replyTargetQQ" select="com.leon.mapper.UserMapper.selectUserByUserQQ"></association>
+    </resultMap>
+    <select id="selectReplyBySpaceIdAndTargetQQ" resultMap="selectWithUsers">
+        select * from polyhedron.Reply where replySpaceId = #{replySpaceId} and replyTargetQQ = #{replyTargetQQ} and replyTargetFloor = #{replyTargetFloor}
+                                                            order by replyId desc limit #{pageStart},#{pageEnd};
+    </select>
+
+</mapper>

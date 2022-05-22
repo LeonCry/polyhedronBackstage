@@ -13,18 +13,13 @@
     <update id="updateSpace" parameterType="com.leon.pojo.StarSpace">
         update polyhedron.StarSpace
     <trim prefix="set" suffixOverrides=",">
-        <if test="publishQQ!=null">publishQQ = #{publishQQ},</if>
-        <if test="spaceContent!=null">spaceContent = #{spaceContent},</if>
-        <if test="publishTime!=null">publishTime = #{publishTime},</if>
         <if test="collector!=null">collector = #{collector},</if>
         <if test="gooder!=null">gooder = #{gooder},</if>
         <if test="noGooder!=null">noGooder = #{noGooder},</if>
         <if test="sharer!=null">sharer = #{sharer},</if>
-        <if test="pageStart!=null">pageStart = #{pageStart},</if>
-        <if test="pageEnd!=null">pageEnd = #{pageEnd},</if>
     </trim>
             <where>
-                publishQQ = #{publishQQ};
+                publishId = #{publishId};
             </where>
     </update>
 
@@ -44,5 +39,9 @@
 
     <select id="selectByPublisher" resultMap="selectStarSpaceWithUsers">
         select * from polyhedron.StarSpace where publishQQ = #{publishQQ} order by publishId desc limit #{pageStart},#{pageEnd};
+    </select>
+
+    <select id="selectByPublishId" resultMap="selectStarSpaceWithUsers">
+        select * from polyhedron.StarSpace where publishId = #{publishId} order by publishId desc limit #{pageStart},#{pageEnd};
     </select>
 </mapper>

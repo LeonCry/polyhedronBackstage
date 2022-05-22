@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.CommentMapper">
+
+    <insert id="insertComment" parameterType="com.leon.mapper.CommentMapper">
+        insert into polyhedron.Comment
+        (commentSpaceId,commentQQ,commentContent,commentTime,commentFloor,pageStart,pageEnd)
+        values
+        (#{commentSpaceId},#{commentQQ},#{commentContent},#{commentTime},#{commentFloor},0,0);
+    </insert>
+
+    <resultMap id="selectWithUsers" type="com.leon.pojo.Comment">
+        <id column="id" property="id"></id>
+        <result column="commentSpaceId" property="commentSpaceId"></result>
+        <result column="commentQQ" property="commentQQ"></result>
+        <result column="commentContent" property="commentContent"></result>
+        <result column="commentTime" property="commentTime"></result>
+        <result column="commentFloor" property="commentFloor"></result>
+        <result column="pageStart" property="pageStart"></result>
+        <result column="pageEnd" property="pageEnd"></result>
+        <association property="user" column="commentQQ" select="com.leon.mapper.UserMapper.selectUserByUserQQ"></association>
+    </resultMap>
+    <select id="selectCommentsBySpaceId" resultMap="selectWithUsers">
+        select * from polyhedron.Comment where commentSpaceId = #{commentSpaceId} order by commentId desc limit #{pageStart},#{pageEnd};
+    </select>
+
+</mapper>

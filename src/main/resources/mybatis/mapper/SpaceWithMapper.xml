@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.SpaceWithMapper">
+    <insert id="insertSpaceWith" parameterType="com.leon.pojo.SpaceWith">
+        insert into polyhedron.SpaceWith
+        (userQQ,collections,goods,noGoods,shares)
+        values (#{userQQ},'','','','');
+    </insert>
+
+    <update id="updateSpaceWith" parameterType="com.leon.pojo.SpaceWith">
+        update polyhedron.SpaceWith
+        <trim prefix="set" suffixOverrides=",">
+            <if test="collections!=null">collections = #{collections},</if>
+            <if test="goods!=null">goods = #{goods},</if>
+            <if test="noGoods!=null">noGoods = #{noGoods},</if>
+            <if test="shares!=null">shares = #{shares},</if>
+        </trim>
+        <where>
+            userQQ = #{userQQ};
+        </where>
+    </update>
+
+    <select id="selectSpaceWithByUserQQ" resultType="com.leon.pojo.SpaceWith">
+        select * from polyhedron.SpaceWith where userQQ = #{userQQ};
+    </select>
+</mapper>
+

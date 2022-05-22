@@ -16,4 +16,7 @@ public interface StarSpaceService {
     //    罗列一堆动态--根据发表者
     List<StarSpace> selectByPublisher(String publishQQ,int pageStart,int pageEnd);
 
+    //    罗列一堆动态--根据ID
+    List<StarSpace> selectByPublishId(int publishId,int pageStart,int pageEnd);
+
 }
