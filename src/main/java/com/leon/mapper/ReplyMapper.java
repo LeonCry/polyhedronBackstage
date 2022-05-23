@@ -15,8 +15,8 @@ public interface ReplyMapper {
     //    插入一条数据
     int insertReply(Reply reply);
     //    读取数据--by spaceId And TargetQQ:后续可否使用懒加载?
-    List<Comment> selectReplyBySpaceIdAndTargetQQ(@Param("replySpaceId") int replySpaceId,@Param("replyTargetQQ") String replyTargetQQ,
-                                                  @Param("replyTargetFloor")int replyTargetFloor,@Param("pageStart") int pageStart, @Param("pageEnd") int pageEnd);
+    List<Comment> selectReplyBySpaceIdAndTargetQQ(@Param("replySpaceId") int replySpaceId,@Param("replyCommentFloor") int replyCommentFloor,
+                                                @Param("pageStart") int pageStart, @Param("pageEnd") int pageEnd);
 
 
 

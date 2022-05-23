@@ -23,7 +23,7 @@ public class ReplyController {
 
     @RequestMapping("selectReplyBySpaceIdAndTargetQQ")
     public String selectReplyBySpaceIdAndTargetQQ(@RequestBody Reply reply){
-        return JSON.toJSONString(replyService.selectReplyBySpaceIdAndTargetQQ(reply.getReplySpaceId(),reply.getReplyTargetQQ(),reply.getReplyTargetFloor(),reply.getPageStart(),reply.getPageEnd()), SerializerFeature.DisableCircularReferenceDetect);
+        return JSON.toJSONString(replyService.selectReplyBySpaceIdAndTargetQQ(reply.getReplySpaceId(),reply.getReplyCommentFloor(),reply.getPageStart(),reply.getPageEnd()), SerializerFeature.DisableCircularReferenceDetect);
     }
 
 

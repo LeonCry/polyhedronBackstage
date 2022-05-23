@@ -6,9 +6,9 @@
 
     <insert id="insertReply" parameterType="com.leon.mapper.ReplyMapper">
         insert into polyhedron.Reply
-        (replySpaceId,replyQQ,replyContent,replyTargetQQ,isReplyComment,myFloor,replyTargetFloor,replyTime,pageStart,pageEnd)
+        (replySpaceId,replyQQ,replyContent,replyTargetQQ,replyCommentFloor,isReplyComment,myFloor,replyTargetFloor,replyTime,pageStart,pageEnd)
         values
-            (#{replySpaceId},#{replyQQ},#{replyContent},#{replyTargetQQ},#{isReplyComment},#{myFloor},#{replyTargetFloor},#{replyTime},0,0);
+            (#{replySpaceId},#{replyQQ},#{replyContent},#{replyTargetQQ},#{replyCommentFloor},#{isReplyComment},#{myFloor},#{replyTargetFloor},#{replyTime},0,0);
     </insert>
 
     <resultMap id="selectWithUsers" type="com.leon.pojo.Reply">
@@ -17,6 +17,7 @@
         <result column="replyQQ" property="replyQQ"></result>
         <result column="replyContent" property="replyContent"></result>
         <result column="replyTargetQQ" property="replyTargetQQ"></result>
+        <result column="replyCommentFloor" property="replyCommentFloor"></result>
         <result column="isReplyComment" property="isReplyComment"></result>
         <result column="myFloor" property="myFloor"></result>
         <result column="replyTime" property="replyTime"></result>
@@ -26,8 +27,7 @@
         <association property="targetUser" column="replyTargetQQ" select="com.leon.mapper.UserMapper.selectUserByUserQQ"></association>
     </resultMap>
     <select id="selectReplyBySpaceIdAndTargetQQ" resultMap="selectWithUsers">
-        select * from polyhedron.Reply where replySpaceId = #{replySpaceId} and replyTargetQQ = #{replyTargetQQ} and replyTargetFloor = #{replyTargetFloor}
-                                                            order by replyId desc limit #{pageStart},#{pageEnd};
+        select * from polyhedron.Reply where replySpaceId = #{replySpaceId} and replyCommentFloor = #{replyCommentFloor} order by replyId desc limit #{pageStart},#{pageEnd};
     </select>
 
 </mapper>

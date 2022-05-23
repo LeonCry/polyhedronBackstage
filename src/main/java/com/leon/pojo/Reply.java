@@ -13,6 +13,7 @@ public class Reply {
     private String replyQQ;
     private String replyContent;
     private String replyTargetQQ;
+    private int replyCommentFloor;
     private int isReplyComment;
     private int myFloor;
     private int replyTargetFloor;

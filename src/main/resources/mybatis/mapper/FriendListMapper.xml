@@ -35,7 +35,7 @@
         <association select="com.leon.mapper.UserMapper.selectUserByUserQQ" column="friendQQ" property="user"></association>
     </resultMap>
     <select id="selectFriends" resultMap="selectFriendsByStep">
-        select * from polyhedron.friendList where userQQ = #{userQQ} and friendQQ = #{friendQQ};
+        select * from polyhedron.friendList where userQQ = #{userQQ} and INSTR(friendQQ,#{friendQQ})>0;
     </select>
 
 
