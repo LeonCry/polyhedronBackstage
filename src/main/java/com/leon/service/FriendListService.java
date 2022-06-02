@@ -34,4 +34,15 @@ public interface FriendListService {
      * @return :所有好友列表
      */
     List<FriendList> getAllFriends(String userQQ);
+
+    /**
+     * 查询该用户下的其中单个朋友
+     * @param userQQ :该用户名字
+     * @param friendQQ :好友名字
+     * @return 单条数据
+     */
+    FriendList getOneFriends(String userQQ,String friendQQ);
+
+
+
 }

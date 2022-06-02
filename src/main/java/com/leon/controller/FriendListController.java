@@ -39,4 +39,10 @@ public class FriendListController {
     public String getAllFriends(@RequestBody FriendList friendList){
         return JSON.toJSONString(friendListService.getAllFriends(friendList.getUserQQ()));
     }
+    //    查询该用户下朋友的单条数据
+    @RequestMapping("getOneFriends")
+    public String getOneFriends(@RequestBody FriendList friendList){
+        return JSON.toJSONString(friendListService.getOneFriends(friendList.getUserQQ(),friendList.getFriendQQ()));
+    }
+
 }

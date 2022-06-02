@@ -38,6 +38,11 @@
         select * from polyhedron.friendList where userQQ = #{userQQ} and INSTR(friendQQ,#{friendQQ})>0;
     </select>
 
+    <select id="selectOneFriends" resultMap="selectFriendsByStep">
+        select * from polyhedron.friendList where userQQ = #{userQQ} and friendQQ = #{friendQQ};
+    </select>
+
+
 
     <resultMap id="selectAllFriendsByStep" type="com.leon.pojo.FriendList">
         <id column="id" property="id"></id>

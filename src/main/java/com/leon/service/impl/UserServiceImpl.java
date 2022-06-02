@@ -67,9 +67,15 @@ public class UserServiceImpl implements UserService {
         }
     //  如果用户为空,则可以注册
         else{
-    //            发送注册成功邮件
-            emailUtil.sendRegisterSuccess(receiveUser.getUserEmail(),"polyhedron.com注册成功",receiveUser);
-            return userMapper.insertUser(receiveUser);
+//            如果是QQ用户,不发送邮件
+            if(receiveUser.getUserQQ().substring(0,6).equals("A9wadv")){
+                return userMapper.insertUser(receiveUser);
+            }
+            else{
+                //            发送注册成功邮件
+                emailUtil.sendRegisterSuccess(receiveUser.getUserEmail(),"polyhedron.com注册成功",receiveUser);
+                return userMapper.insertUser(receiveUser);
+            }
         }
     }
 

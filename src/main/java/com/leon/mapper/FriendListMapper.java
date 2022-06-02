@@ -22,4 +22,7 @@ public interface FriendListMapper {
 
     //    查询所有该用户QQ下的朋友们
     List<FriendList> selectAllFriends(@Param("userQQ") String userQQ);
+
+//     查询所有该用户QQ下其中一个朋友
+    FriendList selectOneFriends(@Param("userQQ") String userQQ,@Param("friendQQ") String friendQQ);
 }
