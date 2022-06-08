@@ -11,7 +11,7 @@ public class FriendList {
     private String userQQ;
     private String friendQQ;
     private String friendRemarkName;
-    private int isShowRecent;
+    private String friendName;
     private long beFriendTime;
     private User user;
 }

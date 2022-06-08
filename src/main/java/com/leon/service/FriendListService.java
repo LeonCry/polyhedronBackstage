@@ -1,6 +1,7 @@
 package com.leon.service;
 
 import com.leon.pojo.FriendList;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,7 +20,8 @@ public interface FriendListService {
      * @return : -1错误
      */
     int updateFriend(FriendList friendList);
-
+    //    删除好友关系
+    int deleteFriend(String userQQ,String friendQQ);
     /**
      * 查询朋友信息:搜索好友功能
      * @param userQQ :搜索者
@@ -34,6 +36,7 @@ public interface FriendListService {
      * @return :所有好友列表
      */
     List<FriendList> getAllFriends(String userQQ);
+    List<FriendList> getAllFriendsReverse(String friendQQ);
 
     /**
      * 查询该用户下的其中单个朋友
@@ -42,6 +45,11 @@ public interface FriendListService {
      * @return 单条数据
      */
     FriendList getOneFriends(String userQQ,String friendQQ);
+
+    //    根据备注进行搜索
+    List<FriendList> selectFriendsByRemakeName(String userQQ,String friendRemarkName);
+    //    根据昵称进行搜索
+    List<FriendList> selectFriendsByName(String userQQ,String friendName);
 
 
 

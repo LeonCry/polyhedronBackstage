@@ -20,7 +20,17 @@ public class ChatsServiceImpl implements ChatsService {
     }
 
     @Override
+    public int deleteChats(String sendUserQQ,String receiveUserQQ) {
+        return chatsMapper.deleteChats(sendUserQQ,receiveUserQQ);
+    }
+
+    @Override
     public List<Chats> selectChats(String sendUserQQ, String receiveUserQQ,int pageStart,int pageEnd) {
         return  chatsMapper.selectOrderDesc(sendUserQQ,receiveUserQQ,pageStart,pageEnd);
+    }
+
+    @Override
+    public List<Chats> selectChatsByContent(String sendUserQQ, String receiveUserQQ, String chatContent) {
+        return chatsMapper.selectChatsByContent(sendUserQQ,receiveUserQQ,chatContent);
     }
 }

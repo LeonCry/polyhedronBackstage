@@ -25,7 +25,13 @@ public class FriendListServiceImpl implements FriendListService {
     public int updateFriend(FriendList friendList) {
         return friendListMapper.updateOneFriend(friendList);
     }
-//    查询朋友信息:搜索好友功能
+
+    @Override
+    public int deleteFriend(String userQQ,String friendQQ) {
+        return friendListMapper.deleteFriend(userQQ,friendQQ);
+    }
+
+    //    查询朋友信息:搜索好友功能
     @Override
     public List<FriendList> searchFriendList(String userQQ, String friendQQ) {
         return friendListMapper.selectFriends(userQQ,friendQQ);
@@ -37,7 +43,22 @@ public class FriendListServiceImpl implements FriendListService {
     }
 
     @Override
+    public List<FriendList> getAllFriendsReverse(String friendQQ) {
+        return friendListMapper.selectAllFriendsReverse(friendQQ);
+    }
+
+    @Override
     public FriendList getOneFriends(String userQQ, String friendQQ) {
         return friendListMapper.selectOneFriends(userQQ,friendQQ);
+    }
+
+    @Override
+    public List<FriendList> selectFriendsByRemakeName(String userQQ, String friendRemarkName) {
+        return friendListMapper.selectFriendsByRemakeName(userQQ,friendRemarkName);
+    }
+
+    @Override
+    public List<FriendList> selectFriendsByName(String userQQ, String friendName) {
+        return friendListMapper.selectFriendsByName(userQQ,friendName);
     }
 }

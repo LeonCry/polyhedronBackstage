@@ -10,12 +10,20 @@
         values
         (#{sendUserQQ},#{receiveUserQQ},#{chatContent},#{chatTime},0,0);
     </insert>
-
+    <delete id="deleteChats" parameterType="com.leon.pojo.Chats">
+        DELETE FROM polyhedron.Chats
+        WHERE sendUserQQ = #{sendUserQQ} and receiveUserQQ = #{receiveUserQQ};
+    </delete>
 
     <select id="selectOrderDesc" resultType="com.leon.pojo.Chats">
         select * from polyhedron.Chats where sendUserQQ = #{sendUserQQ} and receiveUserQQ = #{receiveUserQQ}
         or sendUserQQ = #{receiveUserQQ} and receiveUserQQ = #{sendUserQQ} order by chatId desc limit #{pageStart},#{pageEnd};
     </select>
 
+<!--    查询聊天记录by content-->
+    <select id="selectChatsByContent" resultType="com.leon.pojo.Chats">
+        select * from polyhedron.Chats where sendUserQQ = #{sendUserQQ} and receiveUserQQ = #{receiveUserQQ} and INSTR(chatContent,#{chatContent})>0
+                                          or sendUserQQ = #{receiveUserQQ} and receiveUserQQ = #{sendUserQQ} and INSTR(chatContent,#{chatContent})>0;
+    </select>
 
 </mapper>
