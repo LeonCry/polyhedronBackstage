@@ -27,6 +27,11 @@
         select * from polyhedron.SysNotice where sendUserQQ = #{sendUserQQ} and receiveUserQQ = #{receiveUserQQ}
         and isDelete = 0 and isAccept = 0 and noticeType = 1;
     </select>
+<!--可否发邮件-->
+    <select id="mailInFiveMs" resultType="com.leon.pojo.SysNotice">
+        select * from polyhedron.SysNotice where sendUserQQ = #{sendUserQQ} and receiveUserQQ = #{receiveUserQQ}
+                                             and noticeType = #{noticeType} order by sysNoticeId desc limit 1;
+    </select>
 
 <!--更新数据,动态sql-->
 <!--            inter类型还要加上and noticeTime!=''空的判断-->
@@ -44,4 +49,9 @@
         </where>
     </update>
 
+<!--    删除-->
+    <delete id="delOneNotice" parameterType="int">
+        DELETE FROM polyhedron.SysNotice
+        WHERE sysNoticeId=#{sysNoticeId};
+    </delete>
 </mapper>

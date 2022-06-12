@@ -12,7 +12,8 @@ import java.util.List;
 public interface SysNoticeMapper {
 //    向数据库中添加一条通知数据
      int addOneNotice(SysNotice sysNotice);
-
+//删除数据
+     int delOneNotice(@Param("sysNoticeId") int sysNoticeId);
 //    从数据库中选择若干条未被删除的通知数据 根据接收方用户名
      List<SysNotice> selectSysNoticeByReceiveUserQQ(@Param("receiveUserQQ") String receiveUserQQ);
 
@@ -25,5 +26,7 @@ public interface SysNoticeMapper {
     //      更新数据
      int updateSysNoticeData(SysNotice sysNotice);
 
+//     查询最近一次发送邮件的时间,验证是否符合5分钟设定 ,内置设定 noticeType = 3
+     SysNotice mailInFiveMs (@Param("sendUserQQ") String sendUserQQ,@Param("receiveUserQQ") String receiveUserQQ,@Param("noticeType") int noticeType);
 
 }

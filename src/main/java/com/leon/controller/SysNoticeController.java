@@ -21,6 +21,9 @@ public class SysNoticeController {
 //    添加一条通知数据
     @RequestMapping("addOneNotice")
     public int addOneNotice(@RequestBody SysNotice sysNotice){
+        if (sysNotice.getNoticeType()==0||sysNotice.getNoticeType()==3){
+            return sysNoticeService.addOneNotice(sysNotice);
+        }
         System.out.println("===正在执行 添加一条通知数据");
 //      先检查是否已经发送过这个好友请求了,防止多次发送好友请求
         if (sysNoticeService.selectSysNoticeNoRepeat(sysNotice.getReceiveUserQQ(), sysNotice.getSendUserQQ())!=null){
@@ -64,7 +67,15 @@ public class SysNoticeController {
         return  sysNoticeService.updateData(sysNotice);
     }
 
-
+    @RequestMapping("delOneNotice")
+    public int delOneNotice(@RequestBody SysNotice sysNotice){
+        return  sysNoticeService.delOneNotice(sysNotice.getSysNoticeId());
+    }
+//    可发发邮件 5分钟内
+    @RequestMapping("mailInFiveMs")
+    public String mailInFiveMs(@RequestBody SysNotice sysNotice){
+        return JSON.toJSONString(sysNoticeService.mailInFiveMs(sysNotice.getSendUserQQ(),sysNotice.getReceiveUserQQ(),sysNotice.getNoticeType()));
+    }
 
 
 

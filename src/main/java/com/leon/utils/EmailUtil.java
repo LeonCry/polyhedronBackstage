@@ -1,5 +1,8 @@
 package com.leon.utils;
 
+import com.leon.pojo.Chats;
+import com.leon.pojo.FriendList;
+import com.leon.pojo.StarSpace;
 import com.leon.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -86,6 +89,32 @@ public class EmailUtil {
         context.setVariable("userName",user.getUserName());
         context.setVariable("userPassword",user.getUserPassword());
         String process = templateEngine.process("ForgetPasswordTemplate.html",context);
+        msg.setText(process,true); // 设置邮件内容
+        // 发送邮件
+        mailSender.send(mimeMessage);
+    }
+
+    /**
+     * 发送消息
+     *
+     * @param to      接收方
+     * @param subject 邮件主题
+     * @param starSpace  内容
+     */
+    public void sendMessages(String to, String subject, StarSpace starSpace) throws MessagingException, UnsupportedEncodingException{
+        // 创建一个邮件对象
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper msg = new MimeMessageHelper(mimeMessage, true);
+        msg.setFrom("1686201564@qq.com","polyhedron.com"); // 设置发送方
+        msg.setTo(to); // 设置接收方
+        msg.setSubject(subject); // 设置邮件主题
+        Context context = new Context();
+        context.setVariable("userName",starSpace.getPublishQQ());
+        context.setVariable("noticeTime",starSpace.getPublishTime());
+        context.setVariable("messageType",starSpace.getCollector());
+        context.setVariable("sendUserName",starSpace.getSharer());
+        context.setVariable("messageContent",starSpace.getGooder());
+        String process = templateEngine.process("sendMessages.html",context);
         msg.setText(process,true); // 设置邮件内容
         // 发送邮件
         mailSender.send(mimeMessage);

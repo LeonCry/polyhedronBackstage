@@ -1,6 +1,7 @@
 package com.leon.service;
 
 import com.leon.pojo.SysNotice;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -41,4 +42,8 @@ public interface SysNoticeService {
      * @return 插入几条数据 -1为错误
      */
     int updateData(SysNotice sysNotice);
+//    删除
+    int delOneNotice(int sysNoticeId);
+//    查询是否可发邮件
+    SysNotice mailInFiveMs (String sendUserQQ,String receiveUserQQ,int noticeType);
 }

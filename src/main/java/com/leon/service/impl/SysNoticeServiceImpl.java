@@ -44,4 +44,14 @@ public class SysNoticeServiceImpl implements SysNoticeService {
     public int updateData(SysNotice sysNotice) {
         return sysNoticeMapper.updateSysNoticeData(sysNotice);
     }
+
+    @Override
+    public int delOneNotice(int sysNoticeId) {
+        return sysNoticeMapper.delOneNotice(sysNoticeId);
+    }
+
+    @Override
+    public SysNotice mailInFiveMs(String sendUserQQ, String receiveUserQQ, int noticeType) {
+        return sysNoticeMapper.mailInFiveMs(sendUserQQ,receiveUserQQ,noticeType);
+    }
 }
