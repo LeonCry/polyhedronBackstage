@@ -77,6 +77,8 @@ public class SysNoticeController {
         return JSON.toJSONString(sysNoticeService.mailInFiveMs(sysNotice.getSendUserQQ(),sysNotice.getReceiveUserQQ(),sysNotice.getNoticeType()));
     }
 
-
-
+    @RequestMapping("returnAllNotice")
+    public String returnAllNotice() {
+        return JSON.toJSONString(sysNoticeService.returnAllNotice());
+    }
 }

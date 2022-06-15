@@ -12,7 +12,7 @@ public interface ReplyService {
     //    插入一条数据
     int insertReply(Reply reply);
     //    读取数据--by spaceId And TargetQQ:
-    List<Comment> selectReplyBySpaceIdAndTargetQQ(int replySpaceId,int replyCommentFloor,int pageStart,int pageEnd);
+    List<Reply> selectReplyBySpaceIdAndTargetQQ(int replySpaceId,int replyCommentFloor,int pageStart,int pageEnd);
 
-
+    List<Reply> returnAllReply();
 }

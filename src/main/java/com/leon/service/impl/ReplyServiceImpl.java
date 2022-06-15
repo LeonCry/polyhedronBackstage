@@ -20,7 +20,12 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<Comment> selectReplyBySpaceIdAndTargetQQ(int replySpaceId, int replyCommentFloor ,int pageStart, int pageEnd) {
+    public List<Reply> selectReplyBySpaceIdAndTargetQQ(int replySpaceId, int replyCommentFloor ,int pageStart, int pageEnd) {
         return replyMapper.selectReplyBySpaceIdAndTargetQQ(replySpaceId,replyCommentFloor,pageStart,pageEnd);
+    }
+
+    @Override
+    public List<Reply> returnAllReply() {
+        return replyMapper.returnAllReply();
     }
 }

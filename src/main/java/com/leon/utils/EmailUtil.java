@@ -119,4 +119,28 @@ public class EmailUtil {
         // 发送邮件
         mailSender.send(mimeMessage);
     }
+
+
+    /**
+     * 登录通知
+     *
+     * @param to      接收方
+     * @param subject 邮件主题
+     * @param user  内容
+     */
+    public void loginNotice(String to, String subject, User user) throws MessagingException, UnsupportedEncodingException{
+        // 创建一个邮件对象
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper msg = new MimeMessageHelper(mimeMessage, true);
+        msg.setFrom("1686201564@qq.com","polyhedron.com"); // 设置发送方
+        msg.setTo(to); // 设置接收方
+        msg.setSubject(subject); // 设置邮件主题
+        Context context = new Context();
+        context.setVariable("userName",user.getUserQQ());
+        context.setVariable("noticeTime",user.getUserSign());
+        String process = templateEngine.process("loginNotice.html",context);
+        msg.setText(process,true); // 设置邮件内容
+        // 发送邮件
+        mailSender.send(mimeMessage);
+    }
 }

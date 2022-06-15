@@ -46,4 +46,6 @@ public interface SysNoticeService {
     int delOneNotice(int sysNoticeId);
 //    查询是否可发邮件
     SysNotice mailInFiveMs (String sendUserQQ,String receiveUserQQ,int noticeType);
+
+    List<SysNotice> returnAllNotice();
 }

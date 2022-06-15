@@ -39,7 +39,7 @@ public class StarSpaceController {
 //        SerializerFeature.DisableCircularReferenceDetect:解除循环引用:$refs.user(0)的问题
         return JSON.toJSONString(starSpaceService.selectByPublisher(starSpace.getPublishQQ(),starSpace.getPageStart(),starSpace.getPageEnd()), SerializerFeature.DisableCircularReferenceDetect);
     }
-    //    查询一些动态根据publishUser--以及user
+    //    查询一些动态根据publishId
     @RequestMapping("selectSpacesById")
     public String selectSpacesById(@RequestBody StarSpace starSpace){
 //        SerializerFeature.DisableCircularReferenceDetect:解除循环引用:$refs.user(0)的问题
@@ -51,6 +51,12 @@ public class StarSpaceController {
     public String mailSender(@RequestBody StarSpace starSpace) throws MessagingException, UnsupportedEncodingException {
         emailUtil.sendMessages(starSpace.getNoGooder(),"消息通知",starSpace);
         return "200";
+    }
+
+
+    @RequestMapping("returnAllSpace")
+    public String returnAllSpace(){
+        return JSON.toJSONString(starSpaceService.returnAllSpace());
     }
 
 }

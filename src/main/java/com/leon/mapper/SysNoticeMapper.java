@@ -29,4 +29,5 @@ public interface SysNoticeMapper {
 //     查询最近一次发送邮件的时间,验证是否符合5分钟设定 ,内置设定 noticeType = 3
      SysNotice mailInFiveMs (@Param("sendUserQQ") String sendUserQQ,@Param("receiveUserQQ") String receiveUserQQ,@Param("noticeType") int noticeType);
 
+     List<SysNotice> returnAllNotice();
 }

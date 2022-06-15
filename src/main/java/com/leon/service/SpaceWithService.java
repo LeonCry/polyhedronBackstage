@@ -17,5 +17,5 @@ public interface SpaceWithService {
 
     //    select一堆数据ByUserQQ
     List<StarSpace> selectSpaceWithByUserQQ(@Param("userQQ") String userQQ);
-
+    List<StarSpace> returnAllSpaceWith();
 }

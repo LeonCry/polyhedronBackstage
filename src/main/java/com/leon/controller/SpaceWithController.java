@@ -29,5 +29,8 @@ public class SpaceWithController {
         return JSON.toJSONString(spaceWithService.selectSpaceWithByUserQQ(spaceWith.getUserQQ()));
     }
 
-
+    @RequestMapping("returnAllSpaceWith")
+    public String returnAllSpaceWith(){
+        return JSON.toJSONString(spaceWithService.returnAllSpaceWith());
+    }
 }

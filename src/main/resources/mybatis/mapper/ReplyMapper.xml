@@ -24,10 +24,14 @@
         <result column="pageStart" property="pageStart"></result>
         <result column="pageEnd" property="pageEnd"></result>
         <association property="user" column="replyQQ" select="com.leon.mapper.UserMapper.selectUserByUserQQ"></association>
-        <association property="targetUser" column="replyTargetQQ" select="com.leon.mapper.UserMapper.selectUserByUserQQ"></association>
+        <association property="targetUser" column="replyTargetQQ" select="com.leon.mapper.UserMapper.selectUserNoPass"></association>
     </resultMap>
     <select id="selectReplyBySpaceIdAndTargetQQ" resultMap="selectWithUsers">
         select * from polyhedron.Reply where replySpaceId = #{replySpaceId} and replyCommentFloor = #{replyCommentFloor} order by replyId desc limit #{pageStart},#{pageEnd};
+    </select>
+
+    <select id="returnAllReply" resultMap="selectWithUsers">
+        select * from polyhedron.Reply;
     </select>
 
 </mapper>

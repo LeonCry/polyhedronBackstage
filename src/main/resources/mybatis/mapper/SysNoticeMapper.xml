@@ -11,7 +11,9 @@
         (sendUserQQ,receiveUserQQ,noticeType,remarks,isAccept,isDelete,noticeTime)
         values (#{sendUserQQ},#{receiveUserQQ},#{noticeType},#{remarks},0,0,#{noticeTime});
     </insert>
-
+    <select id="returnAllNotice" resultType="com.leon.pojo.SysNotice">
+        select * from polyhedron.SysNotice;
+    </select>
 
 <!--    查询数据根据receiveUserQQ 且 未被用户删除-->
     <select id="selectSysNoticeByReceiveUserQQ" resultType="com.leon.pojo.SysNotice">

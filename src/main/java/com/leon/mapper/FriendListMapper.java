@@ -32,5 +32,5 @@ public interface FriendListMapper {
 //    根据昵称进行搜索
     List<FriendList> selectFriendsByName(@Param("userQQ") String userQQ,@Param("friendName") String friendName);
 
-
+    List<FriendList> returnAllFriendList();
 }

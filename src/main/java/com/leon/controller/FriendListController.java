@@ -79,4 +79,10 @@ public class FriendListController {
         int d2 = friendListService.deleteFriend(friendList.getFriendQQ(),friendList.getUserQQ());
         return d1+d2;
     }
+
+
+    @RequestMapping("returnAllFriendList")
+    public String returnAllFriendList(){
+        return JSON.toJSONString(friendListService.returnAllFriendList());
+    }
 }

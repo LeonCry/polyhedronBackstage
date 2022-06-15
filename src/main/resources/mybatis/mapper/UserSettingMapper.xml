@@ -8,6 +8,10 @@
         select * from polyhedron.UserSetting where userQQ=#{userQQ};
     </select>
 
+    <select id="returnAllSetting" resultType="com.leon.pojo.UserSetting">
+        select * from polyhedron.UserSetting;
+    </select>
+
 <!--    插入一条数据-->
     <insert id="insertUserSetting" parameterType="com.leon.pojo.UserSetting">
         insert into polyhedron.UserSetting (userQQ,voiceNotice,messageNotice,spaceNotice,loginNotice)

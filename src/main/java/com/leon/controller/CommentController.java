@@ -26,6 +26,9 @@ public class CommentController {
         return JSON.toJSONString(commentService.selectCommentsBySpaceId(comment.getCommentSpaceId(),comment.getPageStart(),comment.getPageEnd()), SerializerFeature.DisableCircularReferenceDetect);
     }
 
-
+    @RequestMapping("returnAllComment")
+    public String returnAllComment(){
+        return JSON.toJSONString(commentService.returnAllComment());
+    }
 
 }

@@ -25,5 +25,8 @@
     <select id="selectSpaceWithByUserQQ" resultType="com.leon.pojo.SpaceWith">
         select * from polyhedron.SpaceWith where userQQ = #{userQQ};
     </select>
+    <select id="returnAllSpaceWith" resultType="com.leon.pojo.SpaceWith">
+        select * from polyhedron.SpaceWith;
+    </select>
 </mapper>
 

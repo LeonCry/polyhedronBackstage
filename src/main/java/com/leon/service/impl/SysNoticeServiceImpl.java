@@ -54,4 +54,9 @@ public class SysNoticeServiceImpl implements SysNoticeService {
     public SysNotice mailInFiveMs(String sendUserQQ, String receiveUserQQ, int noticeType) {
         return sysNoticeMapper.mailInFiveMs(sendUserQQ,receiveUserQQ,noticeType);
     }
+
+    @Override
+    public List<SysNotice> returnAllNotice() {
+        return sysNoticeMapper.returnAllNotice();
+    }
 }

@@ -29,4 +29,9 @@ public class UserSettingControler {
         return userSettingService.updateUserSetting(userSetting);
     }
 
+    @RequestMapping("returnAllSetting")
+    public String returnAllSetting(){
+        return JSON.toJSONString(userSettingService.returnAllSetting());
+    }
+
 }

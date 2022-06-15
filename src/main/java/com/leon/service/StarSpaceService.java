@@ -19,4 +19,5 @@ public interface StarSpaceService {
     //    罗列一堆动态--根据ID
     List<StarSpace> selectByPublishId(int publishId,int pageStart,int pageEnd);
 
+    List<StarSpace> returnAllSpace();
 }

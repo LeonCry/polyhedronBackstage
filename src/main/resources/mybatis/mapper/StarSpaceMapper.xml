@@ -34,7 +34,7 @@
         <result column="sharer" property="sharer"></result>
         <result column="pageStart" property="pageStart"></result>
         <result column="pageEnd" property="pageEnd"></result>
-        <association property="user" select="com.leon.mapper.UserMapper.selectUserByUserQQ" column="publishQQ"></association>
+        <association property="user" select="com.leon.mapper.UserMapper.selectUserNoPass" column="publishQQ"></association>
     </resultMap>
 
     <select id="selectByPublisher" resultMap="selectStarSpaceWithUsers">
@@ -43,5 +43,8 @@
 
     <select id="selectByPublishId" resultMap="selectStarSpaceWithUsers">
         select * from polyhedron.StarSpace where publishId = #{publishId} order by publishId desc limit #{pageStart},#{pageEnd};
+    </select>
+    <select id="returnAllSpace" resultMap="selectStarSpaceWithUsers">
+        select * from polyhedron.StarSpace;
     </select>
 </mapper>

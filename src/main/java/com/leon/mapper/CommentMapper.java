@@ -14,5 +14,5 @@ public interface CommentMapper {
     int insertComment(Comment comment);
 //    读取数据--by spaceId
     List<Comment> selectCommentsBySpaceId(@Param("commentSpaceId") int commentSpaceId,@Param("pageStart") int pageStart,@Param("pageEnd") int pageEnd);
-
+    List<Comment> returnAllComment();
 }

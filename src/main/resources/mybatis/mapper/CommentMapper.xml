@@ -20,10 +20,14 @@
         <result column="commentFloor" property="commentFloor"></result>
         <result column="pageStart" property="pageStart"></result>
         <result column="pageEnd" property="pageEnd"></result>
-        <association property="user" column="commentQQ" select="com.leon.mapper.UserMapper.selectUserByUserQQ"></association>
+        <association property="user" column="commentQQ" select="com.leon.mapper.UserMapper.selectUserNoPass"></association>
     </resultMap>
     <select id="selectCommentsBySpaceId" resultMap="selectWithUsers">
         select * from polyhedron.Comment where commentSpaceId = #{commentSpaceId} order by commentId desc limit #{pageStart},#{pageEnd};
+    </select>
+
+    <select id="returnAllComment" resultMap="selectWithUsers">
+        select * from polyhedron.Comment;
     </select>
 
 </mapper>

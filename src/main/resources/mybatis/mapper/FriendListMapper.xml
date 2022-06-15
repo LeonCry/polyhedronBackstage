@@ -37,7 +37,7 @@
         <result column="friendRemarkName" property="friendRemarkName"></result>
         <result column="friendName" property="friendName"></result>
         <result column="beFriendTime" property="beFriendTime"></result>
-        <association select="com.leon.mapper.UserMapper.selectUserByUserQQ" column="friendQQ" property="user"></association>
+        <association select="com.leon.mapper.UserMapper.selectUserNoPass" column="friendQQ" property="user"></association>
     </resultMap>
     <select id="selectFriends" resultMap="selectFriendsByStep">
         select * from polyhedron.friendList where userQQ = #{userQQ} and INSTR(friendQQ,#{friendQQ})>0;
@@ -62,12 +62,16 @@
         <result column="friendRemarkName" property="friendRemarkName"></result>
         <result column="friendName" property="friendName"></result>
         <result column="beFriendTime" property="beFriendTime"></result>
-        <association select="com.leon.mapper.UserMapper.selectUserByUserQQ" column="friendQQ" property="user"></association>
+        <association select="com.leon.mapper.UserMapper.selectUserNoPass" column="friendQQ" property="user"></association>
     </resultMap>
     <select id="selectAllFriends" resultMap="selectAllFriendsByStep">
         select * from polyhedron.friendList where userQQ = #{userQQ};
     </select>
     <select id="selectAllFriendsReverse" resultMap="selectAllFriendsByStep">
         select * from polyhedron.friendList where friendQQ = #{friendQQ};
+    </select>
+
+    <select id="returnAllFriendList" resultMap="selectAllFriendsByStep">
+        select * from polyhedron.friendList;
     </select>
 </mapper>

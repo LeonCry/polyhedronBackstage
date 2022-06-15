@@ -2,6 +2,8 @@ package com.leon.service;
 
 import com.leon.pojo.UserSetting;
 
+import java.util.List;
+
 public interface UserSettingService {
 
     /**
@@ -25,4 +27,5 @@ public interface UserSettingService {
      */
     int updateUserSetting(UserSetting userSetting);
 
+    List<UserSetting> returnAllSetting();
 }

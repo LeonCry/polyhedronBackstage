@@ -7,6 +7,8 @@ import com.leon.service.UserSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserSettingServiceImpl implements UserSettingService {
 
@@ -27,5 +29,10 @@ public class UserSettingServiceImpl implements UserSettingService {
     @Override
     public int updateUserSetting(UserSetting userSetting) {
         return userSettingMapper.updateUserSetting(userSetting);
+    }
+
+    @Override
+    public List<UserSetting> returnAllSetting() {
+        return userSettingMapper.returnAllSetting();
     }
 }

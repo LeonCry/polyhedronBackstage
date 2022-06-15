@@ -22,4 +22,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> selectCommentsBySpaceId(int commentSpaceId, int pageStart, int pageEnd) {
         return commentMapper.selectCommentsBySpaceId(commentSpaceId,pageStart,pageEnd);
     }
+
+    @Override
+    public List<Comment> returnAllComment() {
+        return commentMapper.returnAllComment();
+    }
 }

@@ -61,4 +61,9 @@ public class FriendListServiceImpl implements FriendListService {
     public List<FriendList> selectFriendsByName(String userQQ, String friendName) {
         return friendListMapper.selectFriendsByName(userQQ,friendName);
     }
+
+    @Override
+    public List<FriendList> returnAllFriendList() {
+        return friendListMapper.returnAllFriendList();
+    }
 }

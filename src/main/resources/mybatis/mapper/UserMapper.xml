@@ -15,6 +15,11 @@
     <select id="selectUserByUserQQ" resultType="com.leon.pojo.User">
         select * from polyhedron.UserInfo where userQQ = #{userQQ};
     </select>
+<!--无密码版本-->
+    <select id="selectUserNoPass" resultType="com.leon.pojo.User">
+        select userId,userQQ,userEmail,userName,userSign,userHead,userBack,userMoney,isOnline from polyhedron.UserInfo where userQQ = #{userQQ};
+    </select>
+
 
 <!--    更新一条数据-->
     <update id="updateUser" parameterType="com.leon.pojo.User">

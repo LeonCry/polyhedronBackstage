@@ -26,6 +26,9 @@ public class ReplyController {
         return JSON.toJSONString(replyService.selectReplyBySpaceIdAndTargetQQ(reply.getReplySpaceId(),reply.getReplyCommentFloor(),reply.getPageStart(),reply.getPageEnd()), SerializerFeature.DisableCircularReferenceDetect);
     }
 
-
+    @RequestMapping("returnAllReply")
+    public String returnAllReply(){
+        return JSON.toJSONString(replyService.returnAllReply());
+    }
 
 }

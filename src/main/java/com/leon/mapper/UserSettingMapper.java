@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface UserSettingMapper {
@@ -18,4 +20,5 @@ public interface UserSettingMapper {
 //    根据用户名修改一条数据
     int updateUserSetting(UserSetting userSetting);
 
+    List<UserSetting> returnAllSetting();
 }

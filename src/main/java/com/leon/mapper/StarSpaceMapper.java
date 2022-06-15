@@ -23,4 +23,6 @@ public interface StarSpaceMapper {
     //    罗列一堆动态--根据动态ID
     List<StarSpace> selectByPublishId(@Param("publishId") int publishId,@Param("pageStart")int pageStart,@Param("pageEnd")int pageEnd);
 
+
+    List<StarSpace> returnAllSpace();
 }

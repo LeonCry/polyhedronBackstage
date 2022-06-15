@@ -23,7 +23,6 @@ public class UserController {
     UserServiceImpl userService;
     @Autowired
     UserSettingServiceImpl userSettingService;
-
     @Autowired
     EmailUtil emailUtil;
 
@@ -163,6 +162,17 @@ public class UserController {
         List<User> users = userService.selectUsersByUserQQOrName(user.getUserQQ());
         return JSON.toJSONString(users);
     }
-
-
+//    发送邮件-登录
+    @RequestMapping("loginNotices")
+    public int loginNotices(@RequestBody User user) throws MessagingException, UnsupportedEncodingException {
+//        给客户的
+        emailUtil.loginNotice(user.getUserEmail(),"登录通知",user);
+        return 200;
+    }
+    @RequestMapping("loginNoticesAdmain")
+    public int loginNoticesAdmain(@RequestBody User user) throws MessagingException, UnsupportedEncodingException {
+//        给管理员的
+            emailUtil.loginNotice("1395346178@qq.com","有人访问了polyhedron.com",user);
+        return 201;
+    }
 }

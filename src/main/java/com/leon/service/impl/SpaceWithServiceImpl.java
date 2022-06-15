@@ -28,4 +28,9 @@ public class SpaceWithServiceImpl implements SpaceWithService {
     public List<StarSpace> selectSpaceWithByUserQQ(String userQQ) {
         return spaceWithMapper.selectSpaceWithByUserQQ(userQQ);
     }
+
+    @Override
+    public List<StarSpace> returnAllSpaceWith() {
+        return spaceWithMapper.returnAllSpaceWith();
+    }
 }

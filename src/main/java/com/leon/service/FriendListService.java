@@ -51,6 +51,6 @@ public interface FriendListService {
     //    根据昵称进行搜索
     List<FriendList> selectFriendsByName(String userQQ,String friendName);
 
-
+    List<FriendList> returnAllFriendList();
 
 }

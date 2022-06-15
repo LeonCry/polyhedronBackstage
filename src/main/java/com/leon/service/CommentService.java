@@ -13,7 +13,7 @@ public interface CommentService {
     //    读取数据--by spaceId
     List<Comment> selectCommentsBySpaceId(int commentSpaceId, int pageStart, int pageEnd);
 
-
+    List<Comment> returnAllComment();
 
 
 }
