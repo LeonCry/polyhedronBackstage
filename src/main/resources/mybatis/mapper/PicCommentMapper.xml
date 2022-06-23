@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.PicCommentMapper">
+
+    <insert id="insertPicComment" parameterType="com.leon.pojo.PicComment">
+        insert into polyhedron.PicComment
+        (picCommentPicId,picCommentQQ,picCommentContent,picCommentTime)
+        values
+            (#{picCommentPicId},#{picCommentQQ},#{picCommentContent},#{picCommentTime};
+    </insert>
+
+    <resultMap id="selectWithUsers" type="com.leon.pojo.PicComment">
+        <id column="id" property="id"></id>
+        <result column="picCommentPicId" property="picCommentPicId"></result>
+        <result column="picCommentQQ" property="picCommentQQ"></result>
+        <result column="picCommentContent" property="picCommentContent"></result>
+        <result column="picCommentTime" property="picCommentTime"></result>
+        <association property="user" column="picCommentQQ" select="com.leon.mapper.UserMapper.selectUserNoPass"></association>
+    </resultMap>
+    <select id="selectPicCommentByPicId" resultMap="selectWithUsers">
+        select * from polyhedron.PicComment where picCommentPicId = #{picCommentPicId} order by picCommentId desc;
+    </select>
+
+    <select id="returnAllPicComment" resultMap="selectWithUsers">
+        select * from polyhedron.PicComment;
+    </select>
+
+</mapper>

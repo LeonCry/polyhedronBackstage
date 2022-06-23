@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.PicWithMapper">
+    <insert id="insertPicWith" parameterType="com.leon.pojo.PicWith">
+        insert into polyhedron.PicWith
+            (picWithQQ,picCollections,picGoods)
+        values (#{picWithQQ},'','');
+    </insert>
+
+    <update id="updatePicWith" parameterType="com.leon.pojo.PicWith">
+        update polyhedron.PicWith
+        <trim prefix="set" suffixOverrides=",">
+            <if test="picCollections!=null">picCollections = #{picCollections},</if>
+            <if test="picGoods!=null">picGoods = #{picGoods},</if>
+        </trim>
+        <where>
+            picWithQQ = #{picWithQQ};
+        </where>
+    </update>
+
+    <select id="selectPicWithByUserQQ" resultType="com.leon.pojo.PicWith">
+        select * from polyhedron.PicWith where picWithQQ = #{picWithQQ};
+    </select>
+    <select id="returnAllPicWith" resultType="com.leon.pojo.PicWith">
+        select * from polyhedron.PicWith;
+    </select>
+</mapper>
+

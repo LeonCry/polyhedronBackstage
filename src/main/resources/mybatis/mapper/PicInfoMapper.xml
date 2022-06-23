@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.PicInfoMapper">
+
+    <insert id="InsertPic" parameterType="com.leon.pojo.PicInfo">
+        insert into polyhedron.PicInfo
+            (picScr,picName,cameraName,cameraInfo,location,picTime,weather,goodNumbers,collectionNumbers,pageStart,pageEnd)
+        values
+            (#{picScr},#{picName},#{cameraName},#{cameraInfo},#{location},#{picTime},#{weather},0,0,0,0);
+    </insert>
+
+    <delete id="delPic" parameterType="com.leon.pojo.PicInfo">
+        DELETE FROM polyhedron.PicInfo
+        WHERE picId = #{picId};
+    </delete>
+
+    <select id="returnPics" resultType="com.leon.pojo.PicInfo">
+        select * from polyhedron.PicInfo order by picId desc limit #{pageStart},#{pageEnd};
+    </select>
+
+    <update id="updatePic" parameterType="com.leon.pojo.PicInfo">
+        update polyhedron.PicInfo
+        <trim prefix="set" suffixOverrides=",">
+            <if test="picScr!=null and picScr!=''">picScr=#{picScr},</if>
+            <if test="picName!=null and  picName!=''">picName=#{picName},</if>
+            <if test="cameraName!=null and cameraName!=''">cameraName=#{cameraName}, </if>
+            <if test="cameraInfo!=null and cameraInfo!=''">cameraInfo=#{cameraInfo},</if>
+            <if test="location!=null and  location!=''">location=#{location},</if>
+            <if test="picTime!=null and  picTime!=''">picTime=#{picTime},</if>
+            <if test="weather!=null and weather!=''">weather=#{weather},</if>
+            <if test="goodNumbers!=null and goodNumbers!=''">goodNumbers=#{goodNumbers},</if>
+            <if test="collectionNumbers!=null and collectionNumbers!=''">collectionNumbers=#{collectionNumbers},</if>
+        </trim>
+        <where>
+            picId = #{picId};
+        </where>
+    </update>
+
+
+</mapper>
