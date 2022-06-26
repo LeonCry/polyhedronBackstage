@@ -13,6 +13,7 @@ public class PicInfo {
     private String picName;
     private String cameraName;
     private String cameraInfo;
+    private String cameraSetting;
     private String location;
     private Long picTime;
     private String weather;

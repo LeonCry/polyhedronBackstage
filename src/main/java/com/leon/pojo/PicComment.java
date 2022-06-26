@@ -13,4 +13,5 @@ public class PicComment {
     private String picCommentQQ;
     private String picCommentContent;
     private Long picCommentTime;
+    private User user;
 }

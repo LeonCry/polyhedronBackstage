@@ -6,9 +6,9 @@
 
     <insert id="InsertPic" parameterType="com.leon.pojo.PicInfo">
         insert into polyhedron.PicInfo
-            (picScr,picName,cameraName,cameraInfo,location,picTime,weather,goodNumbers,collectionNumbers,pageStart,pageEnd)
+            (picScr,picName,cameraName,cameraInfo,cameraSetting,location,picTime,weather,goodNumbers,collectionNumbers,pageStart,pageEnd)
         values
-            (#{picScr},#{picName},#{cameraName},#{cameraInfo},#{location},#{picTime},#{weather},0,0,0,0);
+            (#{picScr},#{picName},#{cameraName},#{cameraInfo},#{cameraSetting},#{location},#{picTime},#{weather},0,0,0,0);
     </insert>
 
     <delete id="delPic" parameterType="com.leon.pojo.PicInfo">
@@ -27,6 +27,7 @@
             <if test="picName!=null and  picName!=''">picName=#{picName},</if>
             <if test="cameraName!=null and cameraName!=''">cameraName=#{cameraName}, </if>
             <if test="cameraInfo!=null and cameraInfo!=''">cameraInfo=#{cameraInfo},</if>
+            <if test="cameraSetting!=null and cameraSetting!=''">cameraSetting=#{cameraSetting},</if>
             <if test="location!=null and  location!=''">location=#{location},</if>
             <if test="picTime!=null and  picTime!=''">picTime=#{picTime},</if>
             <if test="weather!=null and weather!=''">weather=#{weather},</if>

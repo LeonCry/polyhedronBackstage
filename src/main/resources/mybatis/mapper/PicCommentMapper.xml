@@ -8,7 +8,7 @@
         insert into polyhedron.PicComment
         (picCommentPicId,picCommentQQ,picCommentContent,picCommentTime)
         values
-            (#{picCommentPicId},#{picCommentQQ},#{picCommentContent},#{picCommentTime};
+        (#{picCommentPicId},#{picCommentQQ},#{picCommentContent},#{picCommentTime});
     </insert>
 
     <resultMap id="selectWithUsers" type="com.leon.pojo.PicComment">
