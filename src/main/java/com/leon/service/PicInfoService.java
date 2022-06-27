@@ -9,6 +9,7 @@ public interface PicInfoService {
 
     //    返回所有图片信息 但是有page限制
     List<PicInfo> returnPics(int picId, int pageStart,int pageEnd);
+    PicInfo returnPicsById(int picId);
     //添加一个图片信息
     int InsertPic(PicInfo picInfo);
     //删除一个图片

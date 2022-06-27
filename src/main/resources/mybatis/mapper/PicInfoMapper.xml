@@ -8,16 +8,18 @@
         insert into polyhedron.PicInfo
             (picScr,picName,cameraName,cameraInfo,cameraSetting,location,picTime,weather,goodNumbers,collectionNumbers,pageStart,pageEnd)
         values
-            (#{picScr},#{picName},#{cameraName},#{cameraInfo},#{cameraSetting},#{location},#{picTime},#{weather},0,0,0,0);
+            (#{picScr},#{picName},#{cameraName},#{cameraInfo},#{cameraSetting},#{location},#{picTime},#{weather},1,1,0,0);
     </insert>
 
     <delete id="delPic" parameterType="com.leon.pojo.PicInfo">
         DELETE FROM polyhedron.PicInfo
         WHERE picId = #{picId};
     </delete>
-
     <select id="returnPics" resultType="com.leon.pojo.PicInfo">
         select * from polyhedron.PicInfo order by picId desc limit #{pageStart},#{pageEnd};
+    </select>
+    <select id="returnPicsById" resultType="com.leon.pojo.PicInfo">
+        select * from polyhedron.PicInfo WHERE picId = #{picId};
     </select>
 
     <update id="updatePic" parameterType="com.leon.pojo.PicInfo">

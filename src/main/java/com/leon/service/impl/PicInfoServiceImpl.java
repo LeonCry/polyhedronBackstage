@@ -21,6 +21,11 @@ public class PicInfoServiceImpl implements PicInfoService {
     }
 
     @Override
+    public PicInfo returnPicsById(int picId) {
+        return picInfoMapper.returnPicsById(picId);
+    }
+
+    @Override
     public int InsertPic(PicInfo picInfo) {
         return picInfoMapper.InsertPic(picInfo);
     }

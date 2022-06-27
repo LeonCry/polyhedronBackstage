@@ -20,6 +20,10 @@ public class PicInfoController {
     public String returnPics(@RequestBody PicInfo picInfo){
         return JSON.toJSONString(picInfoService.returnPics(picInfo.getPicId(),picInfo.getPageStart(),picInfo.getPageEnd()));
     }
+    @RequestMapping("returnPicsById")
+    public String returnPicsById(@RequestBody PicInfo picInfo){
+        return JSON.toJSONString(picInfoService.returnPicsById(picInfo.getPicId()));
+    }
 
     @RequestMapping("InsertPic")
     public int InsertPic(@RequestBody PicInfo picInfo){
