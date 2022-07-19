@@ -33,7 +33,7 @@ public interface UserService {
      * @throws MessagingException 错误信息
      * @throws UnsupportedEncodingException 错误信息
      */
-    int registerCode(String userEmail) throws MessagingException, UnsupportedEncodingException;
+    float registerCode(String userEmail) throws MessagingException, UnsupportedEncodingException;
 
     /**
      * 用户注册功能

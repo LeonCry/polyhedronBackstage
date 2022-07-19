@@ -48,7 +48,7 @@ public class UserController {
 
 //    注册前的验证码验证功能
     @RequestMapping("userRegisterCode")
-    public int userRegisterCode(@RequestBody User receiverUser) throws MessagingException, UnsupportedEncodingException {
+    public float userRegisterCode(@RequestBody User receiverUser) throws MessagingException, UnsupportedEncodingException {
         System.out.println("===正在进行 用户注册码验证 功能...");
         System.out.println(receiverUser.toString());
 //        发送验证码
@@ -101,7 +101,9 @@ public class UserController {
     public String saveHead(@RequestParam MultipartFile file, HttpServletRequest request){
         System.out.println("===正在执行 上传头像 功能...");
 //        创建上传文件目录
-        String uploadPath = "/Volumes/OS存储/Personalwebsite/polyhedron/src/assets/Heads";
+        String uploadPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\vue-demo-server\\HeadsAndBacks\\Heads";
+//        服务器:C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\vue-demo-server\HeadsAndBacks\Heads
+//        本地: "/Volumes/OS存储/Personalwebsite/polyhedron/src/assets/Heads";
 //        获取原文件名
         String OriginalFilename = file.getOriginalFilename();
         System.out.println(OriginalFilename);
@@ -132,7 +134,9 @@ public class UserController {
     public String saveBack(@RequestParam MultipartFile file, HttpServletRequest request){
     System.out.println("===正在执行 上传背景 功能...");
 //        创建上传文件目录
-    String uploadPath = "/Volumes/OS存储/Personalwebsite/polyhedron/src/assets/Backs";
+    String uploadPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\vue-demo-server\\HeadsAndBacks\\Backs";
+//        服务器:C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\vue-demo-server\HeadsAndBacks\Backs
+//        本地: "/Volumes/OS存储/Personalwebsite/polyhedron/src/assets/Backs";
 //        获取原文件名
     String OriginalFilename = file.getOriginalFilename();
     System.out.println(OriginalFilename);

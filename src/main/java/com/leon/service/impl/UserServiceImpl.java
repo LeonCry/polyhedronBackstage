@@ -48,12 +48,12 @@ public class UserServiceImpl implements UserService {
 
     //    注册功能--前置发送验证码
     @Override
-    public int registerCode(String userEmail) throws MessagingException, UnsupportedEncodingException {
+    public float registerCode(String userEmail) throws MessagingException, UnsupportedEncodingException {
 //        随机数生成验证码
         int code = (int)((Math.random()*9+1)*100000);
         emailUtil.sendCode(userEmail,"您正在注册polyhedron.com",code);
 //        返回给前端发送的验证码
-        return code;
+        return (float) (code+13953461.584312);
 }
 
     //  注册功能
@@ -68,14 +68,14 @@ public class UserServiceImpl implements UserService {
     //  如果用户为空,则可以注册
         else{
 //            如果是QQ用户,不发送邮件
-            if(receiveUser.getUserQQ().substring(0,6).equals("A9wadv")){
-                return userMapper.insertUser(receiveUser);
-            }
-            else{
+//            if(receiveUser.getUserQQ().substring(0,6).equals("A9wadv")){
+//                return userMapper.insertUser(receiveUser);
+//            }
+//            else{
                 //            发送注册成功邮件
                 emailUtil.sendRegisterSuccess(receiveUser.getUserEmail(),"polyhedron.com注册成功",receiveUser);
                 return userMapper.insertUser(receiveUser);
-            }
+//            }
         }
     }
 
