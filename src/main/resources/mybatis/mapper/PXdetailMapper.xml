@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.PXdetailMapper">
+
+    <insert id="addADetails" parameterType="com.leon.pojo.PXdetails">
+        insert into polyhedron.PXdetails
+        (pxUser,pxOr,pxType,pxItem,pxInfo,pxTime)
+        values
+            (#{pxUser},#{pxOr},#{pxType},#{pxPrice},#{pxInfo},#{pxTime});
+    </insert>
+
+    <delete id="delADetails" parameterType="com.leon.pojo.PXdetails">
+        DELETE FROM polyhedron.PXdetails
+        WHERE pxId = #{pxId};
+    </delete>
+
+    <update id="updateADetails" parameterType="com.leon.pojo.PXdetails">
+        update polyhedron.PXdetails
+        <trim prefix="set" suffixOverrides=",">
+            <if test="pxUser!=null and pxUser!=''">pxUser=#{pxUser},</if>
+            <if test="pxOr!=null and  pxOr!=''">pxOr=#{pxOr},</if>
+            <if test="pxType!=null and pxType!=''">pxType=#{pxType}, </if>
+            <if test="pxPrice!=null and pxPrice!=''">pxPrice=#{pxPrice},</if>
+            <if test="pxItem!=null and pxItem!=''">pxItem=#{pxItem},</if>
+            <if test="pxInfo!=null and  pxInfo!=''">pxInfo=#{pxInfo},</if>
+            <if test="pxTime!=null and  pxTime!=''">pxTime=#{pxTime},</if>
+        </trim>
+        <where>
+            pxId = #{pxId};
+        </where>
+    </update>
+
+    <select id="returnDetailsByName" resultType="com.leon.pojo.PXdetails">
+        select * from polyhedron.PXdetails WHERE pxUser = #{pxUser};
+    </select>
+
+    <select id="returnDetailsByNameAndType" resultType="com.leon.pojo.PXdetails">
+        select * from polyhedron.PXdetails WHERE pxUser = #{pxUser} AND pxType = #{pxType} order by pxTime desc limit 1;
+    </select>
+
+    <select id="returnAllDetails" resultType="com.leon.pojo.PXdetails">
+        select * from polyhedron.PXdetails;
+    </select>
+
+
+</mapper>

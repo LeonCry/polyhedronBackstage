@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.ShoppingMapper">
+
+    <insert id="addAShopping" parameterType="com.leon.pojo.Shopping">
+        insert into polyhedron.Shopping
+        (shopName,shopIntro,shopPrice,discountPrice,discountInfo,buyLimit,shopNums,picSrc1,picSrc2,picSrc3,picSrc4,picSrc5,picSrc6,shopFrom,shoper,shoperName,shoperWebsite,supportTrain,expressRegion,allSales,paramName1,paramValue1,paramName2,paramValue2,paramName3,paramValue3,paramName4,paramValue4,detailInfo)
+        values
+        (#{shopName},#{shopIntro},#{shopPrice},#{discountPrice},#{discountInfo},#{buyLimit},#{shopNums},#{picSrc1},#{picSrc2},#{picSrc3},#{picSrc4},#{picSrc5},#{picSrc6},#{shopFrom},#{shoper},#{shoperName},#{shoperWebsite},#{supportTrain},#{expressRegion},#{allSales},#{paramName1},#{paramValue1},#{paramName2},#{paramValue2},#{paramName3},#{paramValue3},#{paramName4},#{paramValue4},#{detailInfo});
+    </insert>
+
+    <delete id="delAShopping" parameterType="com.leon.pojo.Shopping">
+        DELETE FROM polyhedron.Shopping
+        WHERE shopId = #{shopId};
+    </delete>
+
+    <update id="updateAShopping" parameterType="com.leon.pojo.Shopping">
+        update polyhedron.Shopping
+        <trim prefix="set" suffixOverrides=",">
+            <if test="shopName!=null and shopName!=''">shopName=#{shopName},</if>
+            <if test="shopIntro!=null and  shopIntro!=''">shopIntro=#{shopIntro},</if>
+            <if test="shopPrice!=null and shopPrice!=''">shopPrice=#{shopPrice}, </if>
+            <if test="discountPrice!=null and discountPrice!=''">discountPrice=#{discountPrice},</if>
+            <if test="discountInfo!=null and discountInfo!=''">discountInfo=#{discountInfo},</if>
+            <if test="buyLimit!=null and  buyLimit!=''">buyLimit=#{buyLimit},</if>
+            <if test="shopNums!=null and  shopNums!=''">shopNums=#{shopNums},</if>
+            <if test="picSrc1!=null and picSrc1!=''">picSrc1=#{picSrc1},</if>
+            <if test="picSrc2!=null and picSrc2!=''">picSrc2=#{picSrc2},</if>
+            <if test="picSrc3!=null and picSrc3!=''">picSrc3=#{picSrc3},</if>
+            <if test="picSrc4!=null and picSrc4!=''">picSrc4=#{picSrc4},</if>
+            <if test="picSrc5!=null and picSrc5!=''">picSrc5=#{picSrc5},</if>
+            <if test="picSrc6!=null and picSrc6!=''">picSrc6=#{picSrc6}, </if>
+            <if test="shopFrom!=null and shopFrom!=''">shopFrom=#{shopFrom},</if>
+            <if test="shoper!=null and shoper!=''">shoper=#{shoper},</if>
+            <if test="shoperName!=null and  shoperName!=''">shoperName=#{shoperName},</if>
+            <if test="picTime!=null and  picTime!=''">picTime=#{picTime},</if>
+            <if test="shoperWebsite!=null and shoperWebsite!=''">shoperWebsite=#{shoperWebsite},</if>
+            <if test="supportTrain!=null and supportTrain!=''">supportTrain=#{supportTrain},</if>
+            <if test="expressRegion!=null and expressRegion!=''">expressRegion=#{expressRegion},</if>
+            <if test="allSales!=null and allSales!=''">allSales=#{allSales},</if>
+            <if test="picName!=null and  picName!=''">picName=#{picName},</if>
+            <if test="paramName1!=null and paramName1!=''">paramName1=#{paramName1}, </if>
+            <if test="paramValue1!=null and paramValue1!=''">paramValue1=#{paramValue1},</if>
+            <if test="paramName2!=null and paramName2!=''">paramName2=#{paramName2},</if>
+            <if test="paramValue2!=null and  paramValue2!=''">paramValue2=#{paramValue2},</if>
+            <if test="paramName3!=null and  paramName3!=''">paramName3=#{paramName3},</if>
+            <if test="paramValue3!=null and paramValue3!=''">paramValue3=#{paramValue3},</if>
+            <if test="paramName4!=null and paramName4!=''">paramName4=#{paramName4},</if>
+            <if test="paramValue4!=null and paramValue4!=''">paramValue4=#{paramValue4},</if>
+            <if test="detailInfo!=null and detailInfo!=''">detailInfo=#{detailInfo},</if>
+        </trim>
+        <where>
+            shopId = #{shopId};
+        </where>
+    </update>
+
+    <select id="returnShoppingByName" resultType="com.leon.pojo.Shopping">
+        select * from polyhedron.Shopping WHERE shopName = #{shopName};
+    </select>
+
+    <select id="returnShoppingById" resultType="com.leon.pojo.Shopping">
+        select * from polyhedron.Shopping WHERE shopId = #{shopId};
+    </select>
+
+    <select id="returnAllShopping" resultType="com.leon.pojo.Shopping">
+        select * from polyhedron.Shopping;
+    </select>
+
+
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.ShopOrderMapper">
+
+    <insert id="addAShopOrder" parameterType="com.leon.pojo.ShopOrder">
+        insert into polyhedron.ShopOrder
+        (buyShopName,buyShopId,buyUser,buyNum,buyPrice,receiveName,receivePhone,receiveAddress,receiveRemarks,buyTime,buyParamName1,buyParamValue1,buyParamName2,buyParamValue2,buyParamName3,buyParamValue3,buyParamName4,buyParamValue4,orderTrain,trainNumber,orderStatus)
+        values
+            (#{buyShopName},#{buyShopId},#{buyUser},#{buyNum},#{buyPrice},#{receiveName},#{receivePhone},#{receiveAddress},#{receiveRemarks},#{buyTime},#{buyParamName1},#{buyParamValue1},#{buyParamName2},#{buyParamValue2},#{buyParamName3},#{buyParamValue3},#{buyParamName4},#{buyParamValue4},#{orderTrain},#{trainNumber},#{orderStatus});
+    </insert>
+
+    <delete id="delAShopping" parameterType="com.leon.pojo.ShopOrder">
+        DELETE FROM polyhedron.ShopOrder
+        WHERE orderId = #{orderId};
+    </delete>
+
+    <update id="updateAShopping" parameterType="com.leon.pojo.ShopOrder">
+        update polyhedron.ShopOrder
+        <trim prefix="set" suffixOverrides=",">
+            <if test="buyShopName!=null and buyShopName!=''">buyShopName=#{buyShopName},</if>
+            <if test="buyShopId!=null and  buyShopId!=''">buyShopId=#{buyShopId},</if>
+            <if test="buyUser!=null and buyUser!=''">buyUser=#{buyUser}, </if>
+            <if test="buyNum!=null and buyNum!=''">buyNum=#{buyNum},</if>
+            <if test="buyPrice!=null and buyPrice!=''">buyPrice=#{buyPrice},</if>
+            <if test="receiveName!=null and  receiveName!=''">receiveName=#{receiveName},</if>
+            <if test="receivePhone!=null and  receivePhone!=''">receivePhone=#{receivePhone},</if>
+            <if test="receiveAddress!=null and receiveAddress!=''">receiveAddress=#{receiveAddress},</if>
+            <if test="receiveRemarks!=null and receiveRemarks!=''">receiveRemarks=#{receiveRemarks},</if>
+            <if test="buyTime!=null and buyTime!=''">buyTime=#{buyTime},</if>
+            <if test="buyParamName1!=null and buyParamName1!=''">buyParamName1=#{buyParamName1},</if>
+            <if test="buyParamValue1!=null and buyParamValue1!=''">buyParamValue1=#{buyParamValue1},</if>
+            <if test="buyParamName2!=null and buyParamName2!=''">buyParamName2=#{buyParamName2}, </if>
+            <if test="buyParamValue2!=null and buyParamValue2!=''">buyParamValue2=#{buyParamValue2},</if>
+            <if test="buyParamName3!=null and buyParamName3!=''">buyParamName3=#{buyParamName3},</if>
+            <if test="buyParamValue3!=null and  buyParamValue3!=''">buyParamValue3=#{buyParamValue3},</if>
+            <if test="buyParamName4!=null and  buyParamName4!=''">buyParamName4=#{buyParamName4},</if>
+            <if test="buyParamValue4!=null and buyParamValue4!=''">buyParamValue4=#{buyParamValue4},</if>
+            <if test="orderTrain!=null and orderTrain!=''">orderTrain=#{orderTrain},</if>
+            <if test="trainNumber!=null and trainNumber!=''">trainNumber=#{trainNumber},</if>
+            <if test="orderStatus!=null and orderStatus!=''">orderStatus=#{orderStatus},</if>
+        </trim>
+        <where>
+            orderId = #{orderId};
+        </where>
+    </update>
+
+    <resultMap id="selectShoppingById" type="com.leon.pojo.Shopping">
+        <id column="id" property="id"></id>
+        <result column="shopName" property="shopName"></result>
+        <result column="shopIntro" property="shopIntro"></result>
+        <result column="shopPrice" property="shopPrice"></result>
+        <result column="discountPrice" property="discountPrice"></result>
+        <result column="discountInfo" property="discountInfo"></result>
+        <result column="buyLimit" property="buyLimit"></result>
+        <result column="picSrc1" property="picSrc1"></result>
+        <result column="picSrc2" property="picSrc2"></result>
+        <result column="picSrc3" property="picSrc3"></result>
+        <result column="picSrc4" property="picSrc4"></result>
+        <result column="picSrc5" property="picSrc5"></result>
+        <result column="picSrc6" property="picSrc6"></result>
+        <result column="shopFrom" property="shopFrom"></result>
+        <result column="shoper" property="shoper"></result>
+        <result column="shoperName" property="shoperName"></result>
+        <result column="shoperWebsite" property="shoperWebsite"></result>
+        <result column="supportTrain" property="supportTrain"></result>
+        <result column="expressRegion" property="expressRegion"></result>
+        <result column="allSales" property="allSales"></result>
+        <result column="paramName1" property="paramName1"></result>
+        <result column="paramValue1" property="paramValue1"></result>
+        <result column="paramName2" property="paramName2"></result>
+        <result column="paramValue2" property="paramValue2"></result>
+        <result column="paramName3" property="paramName3"></result>
+        <result column="paramValue3" property="paramValue3"></result>
+        <result column="paramName4" property="paramName4"></result>
+        <result column="paramValue4" property="paramValue4"></result>
+        <result column="detailInfo" property="detailInfo"></result>
+        <association property="Shopping" select="com.leon.mapper.ShoppingMapper.returnShoppingById" column="buyShopId"></association>
+    </resultMap>
+
+    <select id="returnShopOrderByName" resultMap="selectShoppingById">
+        select * from polyhedron.ShopOrder where buyShopName = #{buyShopName};
+    </select>
+
+    <select id="returnShoppingById" resultMap="selectShoppingById">
+        select * from polyhedron.ShopOrder WHERE shopId = #{shopId};
+    </select>
+
+    <select id="returnAllShopOrder" resultMap="selectShoppingById">
+        select * from polyhedron.ShopOrder;
+    </select>
+
+</mapper>

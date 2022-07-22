@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.BrowseHistoryMapper">
+
+    <insert id="addABrowseHistory" parameterType="com.leon.pojo.BrowseHistory">
+        insert into polyhedron.BrowseHistory
+        (browseId,browseUser,browseShop,browseShopId,browseNums,browseTimes)
+        values
+            (#{browseId},#{browseUser},#{browseShop},#{browseShopId},#{browseNums},#{browseTimes});
+    </insert>
+
+    <delete id="delABrowseHistory" parameterType="com.leon.pojo.BrowseHistory">
+        DELETE FROM polyhedron.BrowseHistory
+        WHERE browseUser = #{browseUser};
+    </delete>
+
+    <update id="updateABrowseHistory" parameterType="com.leon.pojo.BrowseHistory">
+        update polyhedron.BrowseHistory
+        <trim prefix="set" suffixOverrides=",">
+            <if test="browseUser!=null and browseUser!=''">browseUser=#{browseUser},</if>
+            <if test="browseShop!=null and  browseShop!=''">browseShop=#{browseShop},</if>
+            <if test="browseShopId!=null and browseShopId!=''">browseShopId=#{browseShopId}, </if>
+            <if test="browseNums!=null and browseNums!=''">browseNums=#{browseNums},</if>
+            <if test="browseTimes!=null and browseTimes!=''">browseTimes=#{browseTimes},</if>
+        </trim>
+        <where>
+            browseId = #{browseId};
+        </where>
+    </update>
+
+    <resultMap id="selectShoppingById" type="com.leon.pojo.Shopping">
+        <id column="id" property="id"></id>
+        <result column="shopName" property="shopName"></result>
+        <result column="shopIntro" property="shopIntro"></result>
+        <result column="shopPrice" property="shopPrice"></result>
+        <result column="discountPrice" property="discountPrice"></result>
+        <result column="discountInfo" property="discountInfo"></result>
+        <result column="buyLimit" property="buyLimit"></result>
+        <result column="picSrc1" property="picSrc1"></result>
+        <result column="picSrc2" property="picSrc2"></result>
+        <result column="picSrc3" property="picSrc3"></result>
+        <result column="picSrc4" property="picSrc4"></result>
+        <result column="picSrc5" property="picSrc5"></result>
+        <result column="picSrc6" property="picSrc6"></result>
+        <result column="shopFrom" property="shopFrom"></result>
+        <result column="shoper" property="shoper"></result>
+        <result column="shoperName" property="shoperName"></result>
+        <result column="shoperWebsite" property="shoperWebsite"></result>
+        <result column="supportTrain" property="supportTrain"></result>
+        <result column="expressRegion" property="expressRegion"></result>
+        <result column="allSales" property="allSales"></result>
+        <result column="paramName1" property="paramName1"></result>
+        <result column="paramValue1" property="paramValue1"></result>
+        <result column="paramName2" property="paramName2"></result>
+        <result column="paramValue2" property="paramValue2"></result>
+        <result column="paramName3" property="paramName3"></result>
+        <result column="paramValue3" property="paramValue3"></result>
+        <result column="paramName4" property="paramName4"></result>
+        <result column="paramValue4" property="paramValue4"></result>
+        <result column="detailInfo" property="detailInfo"></result>
+        <association property="Shopping" select="com.leon.mapper.ShoppingMapper.returnShoppingById" column="browseShopId"></association>
+    </resultMap>
+
+    <select id="returnBrowseHistoryByName" resultMap="selectShoppingById">
+        select * from polyhedron.BrowseHistory where browseUser = #{browseUser};
+    </select>
+
+    <select id="returnBrowseHistoryById" resultMap="selectShoppingById">
+        select * from polyhedron.BrowseHistory WHERE browseId = #{browseId};
+    </select>
+
+    <select id="returnAllBrowseHistory" resultMap="selectShoppingById">
+        select * from polyhedron.BrowseHistory;
+    </select>
+
+
+</mapper>

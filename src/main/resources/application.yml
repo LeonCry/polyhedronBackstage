@@ -1,7 +1,7 @@
 server:
   port: 8088
   tomcat:
-    max-http-form-post-size: 100MB
+    max-http-form-post-size: 500MB
 
 spring:
   datasource:
@@ -48,5 +48,5 @@ spring:
 #  配置上传最大文件限制
   servlet:
     multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
+      max-file-size: 500MB
+      max-request-size: 500MB

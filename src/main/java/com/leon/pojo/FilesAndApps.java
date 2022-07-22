@@ -16,7 +16,7 @@ public class FilesAndApps {
     private Long uploadTime;
     private int downloadNums;
     private String filePath;
-    private int fileShow;
+    private String fileShow;
     private String downLoadP;
 
 
