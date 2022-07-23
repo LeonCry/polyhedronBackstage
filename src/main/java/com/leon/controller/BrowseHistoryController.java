@@ -1,6 +1,7 @@
 package com.leon.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.leon.pojo.BrowseHistory;
 import com.leon.service.impl.BrowseHistoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,15 @@ public class BrowseHistoryController {
 
     @RequestMapping("returnAllBrowseHistory")
     public String returnAllBrowseHistory(){
-        return JSON.toJSONString(browseHistoryService.returnAllBrowseHistory());
+        return JSON.toJSONString(browseHistoryService.returnAllBrowseHistory(), SerializerFeature.DisableCircularReferenceDetect);
     }
     @RequestMapping("returnBrowseHistoryById")
     public String returnBrowseHistoryById(@RequestBody BrowseHistory browseHistory){
-        return JSON.toJSONString(browseHistoryService.returnBrowseHistoryById(browseHistory.getBrowseId()));
+        return JSON.toJSONString(browseHistoryService.returnBrowseHistoryById(browseHistory.getBrowseId()),SerializerFeature.DisableCircularReferenceDetect);
     }
     @RequestMapping("returnBrowseHistoryByName")
     public String returnBrowseHistoryByName(@RequestBody BrowseHistory browseHistory){
-        return JSON.toJSONString(browseHistoryService.returnBrowseHistoryByName(browseHistory.getBrowseUser()));
+        return JSON.toJSONString(browseHistoryService.returnBrowseHistoryByName(browseHistory.getBrowseUser()),SerializerFeature.DisableCircularReferenceDetect);
     }
     @RequestMapping("addABrowseHistory")
     public int addABrowseHistory(@RequestBody BrowseHistory browseHistory){

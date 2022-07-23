@@ -16,7 +16,7 @@ public interface ShopOrderMapper {
     //    根据ID查商品订单
     ShopOrder returnShopOrderById( @Param("orderId") int orderId);
     //    根据名字查商品订单
-    List<ShopOrder> returnShopOrderByName(@Param("buyShopName") String buyShopName);
+    List<ShopOrder> returnShopOrderByName(@Param("buyUser") String buyUser);
     //    插入一条商品信息订单
     int addAShopOrder(ShopOrder shopOrder);
     //    修改一条商品信息订单

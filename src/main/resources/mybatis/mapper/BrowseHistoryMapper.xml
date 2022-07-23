@@ -30,7 +30,7 @@
         </where>
     </update>
 
-    <resultMap id="selectShoppingById" type="com.leon.pojo.Shopping">
+    <resultMap id="selectShoppingById" type="com.leon.pojo.BrowseHistory">
         <id column="id" property="id"></id>
         <result column="shopName" property="shopName"></result>
         <result column="shopIntro" property="shopIntro"></result>
@@ -60,7 +60,7 @@
         <result column="paramName4" property="paramName4"></result>
         <result column="paramValue4" property="paramValue4"></result>
         <result column="detailInfo" property="detailInfo"></result>
-        <association property="Shopping" select="com.leon.mapper.ShoppingMapper.returnShoppingById" column="browseShopId"></association>
+        <association property="shopping" select="com.leon.mapper.ShoppingMapper.returnShoppingById" column="browseShopId"></association>
     </resultMap>
 
     <select id="returnBrowseHistoryByName" resultMap="selectShoppingById">

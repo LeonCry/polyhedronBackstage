@@ -1,6 +1,7 @@
 package com.leon.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.leon.pojo.ShopOrder;
 import com.leon.pojo.Shopping;
 import com.leon.service.impl.ShopOrderServiceImpl;
@@ -17,15 +18,15 @@ public class ShopOrderController {
 
     @RequestMapping("returnAllShopOrder")
     public String returnAllShopOrder(){
-        return JSON.toJSONString(shopOrderService.returnAllShopOrder());
+        return JSON.toJSONString(shopOrderService.returnAllShopOrder(),SerializerFeature.DisableCircularReferenceDetect);
     }
     @RequestMapping("returnShopOrderById")
     public String returnShopOrderById(@RequestBody ShopOrder shopOrder){
-        return JSON.toJSONString(shopOrderService.returnShopOrderById(shopOrder.getOrderId()));
+        return JSON.toJSONString(shopOrderService.returnShopOrderById(shopOrder.getOrderId()),SerializerFeature.DisableCircularReferenceDetect);
     }
     @RequestMapping("returnShopOrderByName")
     public String returnShopOrderByName(@RequestBody ShopOrder shopOrder){
-        return JSON.toJSONString(shopOrderService.returnShopOrderByName(shopOrder.getBuyShopName()));
+        return JSON.toJSONString(shopOrderService.returnShopOrderByName(shopOrder.getBuyUser()),SerializerFeature.DisableCircularReferenceDetect);
     }
     @RequestMapping("addAShopOrder")
     public int addAShopOrder(@RequestBody ShopOrder shopOrder){

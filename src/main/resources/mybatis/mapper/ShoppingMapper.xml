@@ -35,12 +35,10 @@
             <if test="shopFrom!=null and shopFrom!=''">shopFrom=#{shopFrom},</if>
             <if test="shoper!=null and shoper!=''">shoper=#{shoper},</if>
             <if test="shoperName!=null and  shoperName!=''">shoperName=#{shoperName},</if>
-            <if test="picTime!=null and  picTime!=''">picTime=#{picTime},</if>
             <if test="shoperWebsite!=null and shoperWebsite!=''">shoperWebsite=#{shoperWebsite},</if>
             <if test="supportTrain!=null and supportTrain!=''">supportTrain=#{supportTrain},</if>
             <if test="expressRegion!=null and expressRegion!=''">expressRegion=#{expressRegion},</if>
             <if test="allSales!=null and allSales!=''">allSales=#{allSales},</if>
-            <if test="picName!=null and  picName!=''">picName=#{picName},</if>
             <if test="paramName1!=null and paramName1!=''">paramName1=#{paramName1}, </if>
             <if test="paramValue1!=null and paramValue1!=''">paramValue1=#{paramValue1},</if>
             <if test="paramName2!=null and paramName2!=''">paramName2=#{paramName2},</if>

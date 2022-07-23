@@ -11,12 +11,12 @@
             (#{buyShopName},#{buyShopId},#{buyUser},#{buyNum},#{buyPrice},#{receiveName},#{receivePhone},#{receiveAddress},#{receiveRemarks},#{buyTime},#{buyParamName1},#{buyParamValue1},#{buyParamName2},#{buyParamValue2},#{buyParamName3},#{buyParamValue3},#{buyParamName4},#{buyParamValue4},#{orderTrain},#{trainNumber},#{orderStatus});
     </insert>
 
-    <delete id="delAShopping" parameterType="com.leon.pojo.ShopOrder">
+    <delete id="delAShopOrder" parameterType="com.leon.pojo.ShopOrder">
         DELETE FROM polyhedron.ShopOrder
         WHERE orderId = #{orderId};
     </delete>
 
-    <update id="updateAShopping" parameterType="com.leon.pojo.ShopOrder">
+    <update id="updateAShopOrder" parameterType="com.leon.pojo.ShopOrder">
         update polyhedron.ShopOrder
         <trim prefix="set" suffixOverrides=",">
             <if test="buyShopName!=null and buyShopName!=''">buyShopName=#{buyShopName},</if>
@@ -46,7 +46,7 @@
         </where>
     </update>
 
-    <resultMap id="selectShoppingById" type="com.leon.pojo.Shopping">
+    <resultMap id="selectShoppingById" type="com.leon.pojo.ShopOrder">
         <id column="id" property="id"></id>
         <result column="shopName" property="shopName"></result>
         <result column="shopIntro" property="shopIntro"></result>
@@ -76,14 +76,14 @@
         <result column="paramName4" property="paramName4"></result>
         <result column="paramValue4" property="paramValue4"></result>
         <result column="detailInfo" property="detailInfo"></result>
-        <association property="Shopping" select="com.leon.mapper.ShoppingMapper.returnShoppingById" column="buyShopId"></association>
+        <association property="shopping" select="com.leon.mapper.ShoppingMapper.returnShoppingById" column="buyShopId"></association>
     </resultMap>
 
     <select id="returnShopOrderByName" resultMap="selectShoppingById">
-        select * from polyhedron.ShopOrder where buyShopName = #{buyShopName};
+        select * from polyhedron.ShopOrder where buyUser = #{buyUser};
     </select>
 
-    <select id="returnShoppingById" resultMap="selectShoppingById">
+    <select id="returnShopOrderById" resultMap="selectShoppingById">
         select * from polyhedron.ShopOrder WHERE shopId = #{shopId};
     </select>
 

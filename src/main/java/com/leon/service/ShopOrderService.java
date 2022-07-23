@@ -10,7 +10,7 @@ public interface ShopOrderService {
     //    根据ID查商品订单
     ShopOrder returnShopOrderById(int orderId);
     //    根据名字查商品订单
-    List<ShopOrder> returnShopOrderByName(String buyShopName);
+    List<ShopOrder> returnShopOrderByName(String buyUser);
     //    插入一条商品信息订单
     int addAShopOrder(ShopOrder shopOrder);
     //    修改一条商品信息订单

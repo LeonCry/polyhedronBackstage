@@ -15,5 +15,6 @@ public class BrowseHistory {
     private int browseShopId;
     private int browseNums;
     private Long browseTimes;
+    private Shopping shopping;
 
 }

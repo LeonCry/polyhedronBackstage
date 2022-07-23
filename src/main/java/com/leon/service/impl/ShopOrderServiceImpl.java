@@ -24,8 +24,8 @@ public class ShopOrderServiceImpl implements ShopOrderService {
     }
 
     @Override
-    public List<ShopOrder> returnShopOrderByName(String buyShopName) {
-        return shopOrderMapper.returnShopOrderByName(buyShopName);
+    public List<ShopOrder> returnShopOrderByName(String buyUser) {
+        return shopOrderMapper.returnShopOrderByName(buyUser);
     }
 
     @Override

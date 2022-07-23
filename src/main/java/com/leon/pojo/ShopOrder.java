@@ -30,4 +30,5 @@ public class ShopOrder {
     private String orderTrain;
     private String trainNumber;
     private String orderStatus;
+    private Shopping shopping;
 }
