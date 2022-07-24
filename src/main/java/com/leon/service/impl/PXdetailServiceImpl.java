@@ -24,6 +24,11 @@ public class PXdetailServiceImpl implements PXdetailService {
     }
 
     @Override
+    public List<PXdetails> returnDetailsByNameAndTypeAndItem(String pxUser, String pxType, String pxItem) {
+        return pXdetailMapper.returnDetailsByNameAndTypeAndItem(pxUser,pxType,pxItem);
+    }
+
+    @Override
     public List<PXdetails> returnDetailsByName(String pxUser) {
         return pXdetailMapper.returnDetailsByName(pxUser);
     }

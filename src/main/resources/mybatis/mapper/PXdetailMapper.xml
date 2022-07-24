@@ -6,9 +6,9 @@
 
     <insert id="addADetails" parameterType="com.leon.pojo.PXdetails">
         insert into polyhedron.PXdetails
-        (pxUser,pxOr,pxType,pxItem,pxInfo,pxTime)
+        (pxUser,pxOr,pxType,pxPrice,pxItem,pxInfo,pxTime)
         values
-            (#{pxUser},#{pxOr},#{pxType},#{pxPrice},#{pxInfo},#{pxTime});
+            (#{pxUser},#{pxOr},#{pxType},#{pxPrice},#{pxItem},#{pxInfo},#{pxTime});
     </insert>
 
     <delete id="delADetails" parameterType="com.leon.pojo.PXdetails">
@@ -38,6 +38,10 @@
 
     <select id="returnDetailsByNameAndType" resultType="com.leon.pojo.PXdetails">
         select * from polyhedron.PXdetails WHERE pxUser = #{pxUser} AND pxType = #{pxType} order by pxTime desc limit 1;
+    </select>
+
+    <select id="returnDetailsByNameAndTypeAndItem" resultType="com.leon.pojo.PXdetails">
+        select * from polyhedron.PXdetails WHERE pxUser = #{pxUser} AND pxType = #{pxType} AND pxItem = #{pxItem} order by pxTime desc limit 1;
     </select>
 
     <select id="returnAllDetails" resultType="com.leon.pojo.PXdetails">

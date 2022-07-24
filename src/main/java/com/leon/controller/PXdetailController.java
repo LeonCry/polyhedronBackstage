@@ -23,6 +23,12 @@ public class PXdetailController {
     public String returnDetailsByNameAndType(@RequestBody PXdetails pXdetails){
         return JSON.toJSONString(pXdetailService.returnDetailsByNameAndType(pXdetails.getPxUser(),pXdetails.getPxType()));
     }
+    @RequestMapping("returnDetailsByNameAndTypeAndItem")
+    public String returnDetailsByNameAndTypeAndItem(@RequestBody PXdetails pXdetails){
+        return JSON.toJSONString(pXdetailService.returnDetailsByNameAndTypeAndItem(pXdetails.getPxUser(),pXdetails.getPxType(),pXdetails.getPxItem()));
+    }
+
+
     @RequestMapping("returnDetailsByName")
     public String returnDetailsByName(@RequestBody PXdetails pXdetails){
         return JSON.toJSONString(pXdetailService.returnDetailsByName(pXdetails.getPxUser()));

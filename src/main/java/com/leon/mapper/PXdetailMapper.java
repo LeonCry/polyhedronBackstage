@@ -16,6 +16,8 @@ public interface PXdetailMapper {
     List<PXdetails> returnAllDetails();
     //    根据用户和类型
     List<PXdetails> returnDetailsByNameAndType(@Param("pxUser") String pxUser,@Param("pxType") String pxType);
+    //    根据用户和类型和项目
+    List<PXdetails> returnDetailsByNameAndTypeAndItem(@Param("pxUser") String pxUser,@Param("pxType") String pxType,@Param("pxItem") String pxItem);
     //    根据名字查收支明细
     List<PXdetails> returnDetailsByName( @Param("pxUser") String pxUser);
     //    插入一条商品收支明细

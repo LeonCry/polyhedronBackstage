@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class PXdetails {
     private int pxId;
     private String pxUser;
-    private String pxOr;
+    private int pxOr;
     private String pxType;
     private double pxPrice;
     private String pxItem;

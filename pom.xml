@@ -12,6 +12,7 @@
     <artifactId>polyhedronBackstage</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>polyhedronBackstage</name>
+<!--    改变打包方式的地方在这里  改变打包方式的地方在这里  改变打包方式的地方在这里  改变打包方式的地方在这里  改变打包方式的地方在这里  改变打包方式的地方在这里-->
     <packaging>war</packaging>
     <description>polyhedronBackstage</description>
     <properties>

@@ -64,7 +64,7 @@
     </resultMap>
 
     <select id="returnBrowseHistoryByName" resultMap="selectShoppingById">
-        select * from polyhedron.BrowseHistory where browseUser = #{browseUser};
+        select * from polyhedron.BrowseHistory where browseUser = #{browseUser} order by browseTimes desc;
     </select>
 
     <select id="returnBrowseHistoryById" resultMap="selectShoppingById">
