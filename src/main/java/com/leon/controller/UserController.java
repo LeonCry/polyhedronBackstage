@@ -126,6 +126,38 @@ public class UserController {
 
     }
 
+    //    上传其他图片
+    @RequestMapping("savePics")
+    @ResponseBody
+    public String savePics(@RequestParam MultipartFile file, HttpServletRequest request){
+        System.out.println("===正在执行 上传图片 功能...");
+//        创建上传文件目录
+        String uploadPath = "/Volumes/OS存储/Personalwebsite/polyhedron/public/pics";
+//        服务器:C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\vue-demo-server\HeadsAndBacks\Heads
+//        本地: "/Volumes/OS存储/Personalwebsite/polyhedron/src/assets/Heads";
+//        获取原文件名
+        String OriginalFilename = file.getOriginalFilename();
+        System.out.println(OriginalFilename);
+//        获取文件后缀名
+        String suffixName = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));//获取文件后缀名
+//        重新生成名字
+        String filename = UUID.randomUUID().toString() +suffixName;
+        File localFile = new File(uploadPath+"/"+filename);
+        try {
+            file.transferTo(localFile); //把上传的文件保存至本地
+            /*
+             * 这里应该把filename保存到数据库,供前端访问时使用
+             */
+            return filename;//上传成功，返回保存的文件地址
+        }catch (IOException e){
+            e.printStackTrace();
+            System.out.println("上传失败");
+            return "-1";
+        }
+
+    }
+
+
 
 
 //    上传背景

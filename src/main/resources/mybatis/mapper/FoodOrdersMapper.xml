@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.FoodOrdersMapper">
+
+
+    <insert id="insertFoodOrders" parameterType="com.leon.pojo.FoodOrders">
+        insert into polyhedron.FoodOrders
+        (orderPerson,orderDiners,orderContent,orderStatus,orderTime)
+        values
+            (#{orderPerson},#{orderDiners},#{orderContent},#{orderStatus},#{orderTime});
+    </insert>
+
+    <delete id="deleteFoodOrders" parameterType="com.leon.pojo.FoodOrders">
+        DELETE FROM polyhedron.FoodOrders
+        WHERE orderId = #{orderId};
+    </delete>
+    <select id="selectAllFoodOrders" resultType="com.leon.pojo.FoodOrders">
+        select * from polyhedron.FoodOrders order by orderId desc;
+    </select>
+    <select id="selectFoodOrdersByNameAndStatus" resultType="com.leon.pojo.FoodOrders">
+        select * from polyhedron.FoodOrders where orderPerson = #{orderPerson} and orderStatus = #{orderStatus} order by orderId desc;
+    </select>
+    <select id="selectFoodOrdersByName" resultType="com.leon.pojo.FoodOrders">
+        select * from polyhedron.FoodOrders where orderPerson = #{orderPerson} order by orderId desc;
+    </select>
+    <select id="selectFoodOrdersById" resultType="com.leon.pojo.FoodOrders">
+        select * from polyhedron.FoodOrders where orderId = #{orderId} order by orderId desc;
+    </select>
+    <update id="updateFoodOrders" parameterType="com.leon.pojo.FoodOrders">
+        update polyhedron.FoodOrders
+        <trim prefix="set" suffixOverrides=",">
+            <if test="orderPerson!=null and orderPerson!=''">orderPerson=#{orderPerson},</if>
+            <if test="orderDiners!=null and  orderDiners!=''">orderDiners=#{orderDiners},</if>
+            <if test="orderContent!=null and orderContent!=''">orderContent=#{orderContent}, </if>
+            <if test="orderStatus!=null and orderStatus!=''">orderStatus=#{orderStatus},</if>
+            <if test="orderTime!=null and orderTime!=''">orderTime=#{orderTime},</if>
+        </trim>
+        <where>
+            orderId = #{orderId};
+        </where>
+    </update>
+
+</mapper>

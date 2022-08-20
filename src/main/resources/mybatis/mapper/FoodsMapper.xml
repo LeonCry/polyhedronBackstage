@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leon.mapper.FoodsMapper">
+
+
+    <insert id="insertFoods" parameterType="com.leon.pojo.Foods">
+        insert into polyhedron.Foods
+        (foodName,foodPic,foodType,foodCopy,foodMaterial,foodMadeTimes,foodMadeNums,foodPrice,foodDetails,foodDoingWay)
+        values
+            (#{foodName},#{foodPic},#{foodType},#{foodCopy},#{foodMaterial},#{foodMadeTimes},#{foodMadeNums},#{foodPrice},#{foodDetails},#{foodDoingWay});
+    </insert>
+
+    <delete id="deleteFoods" parameterType="com.leon.pojo.Foods">
+        DELETE FROM polyhedron.Foods
+        WHERE foodId = #{foodId};
+    </delete>
+    <select id="selectAllFoods" resultType="com.leon.pojo.Foods">
+        select * from polyhedron.Foods;
+    </select>
+    <select id="selectFoodsByName" resultType="com.leon.pojo.Foods">
+        select * from polyhedron.Foods where INSTR(foodName,#{foodName})>0;
+    </select>
+    <update id="updateFoods" parameterType="com.leon.pojo.Foods">
+        update polyhedron.Foods
+        <trim prefix="set" suffixOverrides=",">
+            <if test="foodName!=null and foodName!=''">foodName=#{foodName},</if>
+            <if test="foodPic!=null and  foodPic!=''">foodPic=#{foodPic},</if>
+            <if test="foodType!=null and foodType!=''">foodType=#{foodType}, </if>
+            <if test="foodCopy!=null and foodCopy!=''">foodCopy=#{foodCopy},</if>
+            <if test="foodMaterial!=null and foodMaterial!=''">foodMaterial=#{foodMaterial},</if>
+            <if test="foodMadeTimes!=null and  foodMadeTimes!=''">foodMadeTimes=#{foodMadeTimes},</if>
+            <if test="foodMadeNums!=null and  foodMadeNums!=''">foodMadeNums=#{foodMadeNums},</if>
+            <if test="foodPrice!=null and  foodPrice!=''">foodPrice=#{foodPrice},</if>
+            <if test="foodDetails!=null and  foodDetails!=''">foodDetails=#{foodDetails},</if>
+            <if test="foodDoingWay!=null and  foodDoingWay!=''">foodDoingWay=#{foodDoingWay},</if>
+
+        </trim>
+        <where>
+            foodId = #{foodId};
+        </where>
+    </update>
+
+</mapper>
