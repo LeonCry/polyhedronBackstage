@@ -30,7 +30,7 @@ public class FileAndAppController {
     @RequestMapping("filesAppsUpLoads")
     public String upload(@RequestParam MultipartFile file, HttpServletRequest request){
         if(!file.isEmpty()){
-            String uploadPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\vue-demo-server\\UploadFiles";
+            String uploadPath = "/jar/file";
             // 如果目录不存在则创建
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
@@ -82,7 +82,7 @@ public class FileAndAppController {
     @RequestMapping("downLoadFiles")
     public void downloadFileStream(@RequestBody FilesAndApps filesAndApps) {
         // 文件本地位置
-        String fileBasePath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\vue-demo-server\\UploadFiles";
+        String fileBasePath = "/jar/file";
         String fileAddPath = filesAndApps.getFilePath();
         String filePath = fileBasePath +"/"+ fileAddPath;
         System.out.println(filePath);

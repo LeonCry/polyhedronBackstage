@@ -101,7 +101,7 @@ public class UserController {
     public String saveHead(@RequestParam MultipartFile file, HttpServletRequest request){
         System.out.println("===正在执行 上传头像 功能...");
 //        创建上传文件目录
-        String uploadPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\vue-demo-server\\HeadsAndBacks\\Heads";
+        String uploadPath = "/www/wwwroot/polyhedronX/HeadsAndBacks/Heads";
 //        服务器:C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\vue-demo-server\HeadsAndBacks\Heads
 //        本地: "/Volumes/OS存储/Personalwebsite/polyhedron/src/assets/Heads";
 //        获取原文件名
@@ -166,7 +166,7 @@ public class UserController {
     public String saveBack(@RequestParam MultipartFile file, HttpServletRequest request){
     System.out.println("===正在执行 上传背景 功能...");
 //        创建上传文件目录
-    String uploadPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\vue-demo-server\\HeadsAndBacks\\Backs";
+    String uploadPath = "/www/wwwroot/polyhedronX/HeadsAndBacks/Backs";
 //        服务器:C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\vue-demo-server\HeadsAndBacks\Backs
 //        本地: "/Volumes/OS存储/Personalwebsite/polyhedron/src/assets/Backs";
 //        获取原文件名
